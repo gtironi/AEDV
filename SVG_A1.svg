@@ -8,7 +8,7 @@ fill="white"
 />
 
 <ellipse
-cx="170" cy="140" rx="40" ry="110"
+cx="170" cy="140" rx="40" ry="110" transform="rotate(70 [170 140])"
 stroke="black"
 stroke-width="3" 
 fill="white"
