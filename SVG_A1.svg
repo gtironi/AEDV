@@ -1,14 +1,14 @@
 html` <svg  width="500" height="500">
 
 <!-- Orelha Direita -->
-<ellipse transform="rotate(-160, 330, 140)"  
-cx="330" cy="140" rx="40" ry="110"
+<ellipse transform="rotate(110, 180, 169)"  
+cx="180" cy="169" rx="21" ry="61"
 stroke="black"
 stroke-width="3" 
 fill="white"
 />
-<ellipse transform="rotate(80, 180, 169)"  
-cx="180" cy="169" rx="21" ry="61"
+<ellipse transform="rotate(-160, 330, 140)"  
+cx="330" cy="140" rx="40" ry="110"
 stroke="black"
 stroke-width="3" 
 fill="white"
