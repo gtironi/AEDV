@@ -41,7 +41,7 @@ fill="white"
 />
 
 <!-- Bigodes -->
- <path d="M 20,100 Q 150,20 280,100" stroke="black" fill="none" />
+ <path d="M 20,100 Q 210,265 96,275" stroke="black" fill="none" />
 
 
 </svg>`
