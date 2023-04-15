@@ -7,6 +7,12 @@ stroke="black"
 stroke-width="3" 
 fill="white"
 />
+<ellipse transform="rotate(-80, 180, 69)"  
+cx="180" cy="69" rx="21" ry="61"
+stroke="black"
+stroke-width="3" 
+fill="white"
+/>
 
 <!-- Orelha Esquerda -->
 <ellipse transform="rotate(160, 170, 140)"
