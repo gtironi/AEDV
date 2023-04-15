@@ -1,12 +1,5 @@
 html` <svg  width="500" height="500">
 
-<circle
-cx="250" cy="300" r="100"
-stroke="black"
-stroke-width="5"
-fill="white"
-/>
-
 <!-- Orelha Direita -->
 <ellipse transform="rotate(-160, 330, 140)"  
 cx="330" cy="140" rx="40" ry="110"
@@ -22,5 +15,15 @@ stroke="black"
 stroke-width="3" 
 fill="white"
 />
+
+<circle
+cx="250" cy="300" r="100"
+stroke="black"
+stroke-width="5"
+fill="white"
+/>
+
+
+
 
 </svg>`
