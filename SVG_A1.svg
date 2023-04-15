@@ -26,8 +26,6 @@ fill ="#8FD95B"
 <line x1="450" y1="310" x2="450" y2="500" stroke="black" stroke-width="3" />
 <line x1="500" y1="310" x2="500" y2="500" stroke="black" stroke-width="3" />
 
-
-
 <!-- Orelha Direita -->
 <ellipse transform="rotate(-160, 330, 140)"  
 cx="330" cy="140" rx="40" ry="110"
@@ -93,6 +91,9 @@ fill="black"
 <!-- Boca -->
 <path d="M 250,350 Q 245,370 223,360" stroke="black" stroke-width="4"  fill="none" />
 <path d="M 250,350 Q 255,370 277,360" stroke="black" stroke-width="4"  fill="none" />
+
+<!-- Mensagem -->
+<text x="60" y="150">Feliz Páscoa!!</text>
 
 
 </svg>`
