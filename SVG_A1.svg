@@ -8,7 +8,7 @@ fill="white"
 />
 
 <!-- Orelha Direita -->
-<ellipse transform="rotate(-160, 170, 140)"  
+<ellipse transform="rotate(-160, 330, 140)"  
 cx="330" cy="140" rx="40" ry="110"
 stroke="black"
 stroke-width="3" 
