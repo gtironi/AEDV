@@ -7,8 +7,8 @@ stroke="black"
 stroke-width="3" 
 fill="white"
 />
-<ellipse transform="rotate(-160, 180, 169)"  
-cx="180" cy="169" rx="21" ry="61"
+<ellipse transform="rotate(-160, 220, 169)"  
+cx="220" cy="169" rx="21" ry="61"
 stroke="black"
 stroke-width="3" 
 fill="red"
@@ -20,6 +20,12 @@ cx="170" cy="140" rx="40" ry="110"
 stroke="black"
 stroke-width="3" 
 fill="white"
+/>
+<ellipse transform="rotate(160, 180, 169)"  
+cx="180" cy="169" rx="21" ry="61"
+stroke="black"
+stroke-width="3" 
+fill="red"
 />
 
 <!-- Cabeça -->
