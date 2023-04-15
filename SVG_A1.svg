@@ -3,6 +3,7 @@ html` <svg  width="467" height="320">
 <circle
 cx="100" cy="200" r="50"
 stroke="black"
+stroke-width="3"
 />
 
 <ellipse
