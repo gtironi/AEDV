@@ -1,5 +1,12 @@
 html` <svg  width="500" height="500">
 
+<!-- Fundo-->
+<polygon fill="#5196A6"
+points="0,0 200,0 0,150" 
+/>
+
+
+
 <!-- Orelha Direita -->
 <ellipse transform="rotate(-160, 330, 140)"  
 cx="330" cy="140" rx="40" ry="110"
