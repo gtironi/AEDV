@@ -5,7 +5,7 @@ html` <svg  width="500" height="500">
 cx="330" cy="140" rx="40" ry="110"
 stroke="black"
 stroke-width="3" 
-fill="white"
+fill="#71716F"
 />
 <ellipse transform="rotate(-160, 320, 169)"  
 cx="320" cy="169" rx="21" ry="61"
