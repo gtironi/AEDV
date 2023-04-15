@@ -32,5 +32,12 @@ stroke-width="3"
 fill="white"
 />
 
+<!-- Olho Direito -->
+<ellipse transform="rotate(8, 216, 305)"
+cx="284" cy="305" rx="8.5" ry="10"
+stroke="black"
+stroke-width="3" 
+fill="white"
+/>
 
 </svg>`
