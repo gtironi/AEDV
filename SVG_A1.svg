@@ -8,7 +8,7 @@ stroke-width="3"
 fill="white"
 />
 <ellipse transform="rotate(-160, 320, 169)"  
-cx="220" cy="169" rx="21" ry="61"
+cx="320" cy="169" rx="21" ry="61"
 stroke="black"
 stroke-width="3" 
 fill="red"
