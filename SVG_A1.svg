@@ -52,7 +52,7 @@ fill="white"
 cx="250" cy="336" r="14"
 fill="black"
 />
-<rectx="236" y="322" width="28" height="14" fill="white"/>
+<rect x="236" y="322" width="28" height="14" fill="white"/>
 
 <!-- Boca -->
 <path d="M 250,350 Q 243,370 223,360" stroke="black" stroke-width="2"  fill="none" />
