@@ -47,4 +47,13 @@ fill="white"
 <path d="M 290,335 Q 347,319 404,325" stroke="black" stroke-width="2"  fill="none" />
 <path d="M 290,355 Q 350,350 400,375" stroke="black" stroke-width="2"  fill="none" />
 
+<!-- Nariz -->
+
+
+<circle
+cx="250" cy="336" r="14"
+fill="black"
+/>
+
+
 </svg>`
