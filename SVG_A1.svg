@@ -6,7 +6,7 @@ html` <svg  width="500" height="500">
 <rect x="0" y="220" width="500" height="280" fill="#8FD95B"/>
 
 <polygon fill="#5196A6"
-points="10,12 15,15 25,32 50,67 53,69 60,71 "
+points="40,60 70,170 280,30 "
 />
 
 
