@@ -1,7 +1,8 @@
 html` <svg  width="500" height="500">
 
-<!-- Fundo-->
+<!-- Fundo -->
 <rect x="0" y="0" width="500" height="220" fill="#5196A6"/>
+<rect x="0" y="220" width="500" height="280" fill="#A6953F"/>
 
 <polygon fill="#5196A6"
 points="0,0 200,0 0,150" 
