@@ -48,16 +48,15 @@ fill="white"
 <path d="M 290,355 Q 350,350 400,375" stroke="black" stroke-width="2"  fill="none" />
 
 <!-- Nariz -->
-
-
 <circle
 cx="250" cy="336" r="14"
 fill="black"
 />
+<rectx="236" y="322" width="28" height="14" fill="white"/>
 
-<rect
-x="236" y="322" width="28" height="14" fill="white"
-/>
+<!-- Boca -->
+<path d="M 250,350 Q 243,370 223,360" stroke="black" stroke-width="2"  fill="none" />
+<path d="M 250,350 Q 257,370 277,360" stroke="black" stroke-width="2"  fill="none" />
 
 
 </svg>`
