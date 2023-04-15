@@ -3,7 +3,7 @@ html` <svg  width="500" height="500">
 <!-- Fundo -->
 <rect x="0" y="0" width="250" height="310" fill="#D9329E"/>
 <rect x="250" y="0" width="250" height="310" fill="#F2EB80"/>
-<rect x="0" y="310" width="500" height="280" fill="#8FD95B"/>
+<rect x="0" y="310" width="500" height="190" fill="#8FD95B"/>
 
 <polygon fill="#F2EB80"
 points="40,60 70,170 280,80 280,30 "
@@ -13,6 +13,9 @@ points="40,60 70,170 280,80 280,30 "
 cx="360" cy="280" r="80"
 fill ="#8FD95B"
 />
+
+<!-- Linhas no fundo - Verde -->
+<line x1="50" y1="310" x2="50" y2="500" stroke="black" stroke-width="7" />
 
 
 
