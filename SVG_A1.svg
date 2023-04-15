@@ -33,7 +33,7 @@ fill="white"
 />
 
 <!-- Olho Direito -->
-<ellipse transform="rotate(8, 216, 305)"
+<ellipse transform="rotate(8, 284, 305)"
 cx="284" cy="305" rx="8.5" ry="10"
 stroke="black"
 stroke-width="3" 
