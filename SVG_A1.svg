@@ -5,7 +5,7 @@ html` <svg  width="500" height="500">
 cx="330" cy="140" rx="40" ry="110"
 stroke="black"
 stroke-width="3" 
-fill="#71716F"
+fill="#949C9A"
 />
 <ellipse transform="rotate(-160, 320, 169)"  
 cx="320" cy="169" rx="21" ry="61"
@@ -19,7 +19,7 @@ fill="#56231D"
 cx="170" cy="140" rx="40" ry="110"
 stroke="black"
 stroke-width="3" 
-fill="#71716F"
+fill="#949C9A"
 />
 <ellipse transform="rotate(160, 180, 169)"  
 cx="180" cy="169" rx="21" ry="61"
@@ -33,7 +33,7 @@ fill="#56231D"
 cx="250" cy="300" r="100"
 stroke="black"
 stroke-width="3"
-fill="#71716F"
+fill="#949C9A"
 />
 
 <!-- Olho Esquerdo -->
@@ -60,7 +60,7 @@ fill="black"
 cx="250" cy="336" r="14"
 fill="black"
 />
-<rect x="236" y="322" width="28" height="14" fill="#71716F"/>
+<rect x="236" y="322" width="28" height="14" fill="#949C9A"/>
 
 <!-- Boca -->
 <path d="M 250,350 Q 245,370 223,360" stroke="black" stroke-width="4"  fill="none" />
