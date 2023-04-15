@@ -44,5 +44,7 @@ fill="white"
 <path d="M 210,335 Q 153,319 96,325" stroke="black" stroke-width="2"  fill="none" />
 <path d="M 210,355 Q 150,350 100,375" stroke="black" stroke-width="2"  fill="none" />
 
+<path d="M 290,335 Q 347,319 404,325" stroke="black" stroke-width="2"  fill="none" />
+<path d="M 290,355 Q 350,350 400,375" stroke="black" stroke-width="2"  fill="none" />
 
 </svg>`
