@@ -6,7 +6,7 @@ html` <svg  width="500" height="500">
 <rect x="0" y="220" width="500" height="280" fill="#8FD95B"/>
 
 <polygon fill="#5196A6"
-points="0,0 200,0 0,150" 
+points="10,12 15,15 25,32 50,67 53,69 60,71 "
 />
 
 
@@ -22,7 +22,7 @@ fill="#6DDAF2"
 cx="320" cy="169" rx="21" ry="61"
 stroke="black"
 stroke-width="3" 
-fill="##30A8F2"
+fill="#30A8F2"
 />
 
 <!-- Orelha Esquerda -->
