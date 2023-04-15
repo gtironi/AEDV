@@ -1,8 +1,9 @@
 html` <svg  width="500" height="500">
 
 <!-- Fundo -->
-<rect x="0" y="0" width="500" height="220" fill="#5196A6"/>
-<rect x="0" y="220" width="500" height="280" fill="#A6953F"/>
+<rect x="0" y="0" width="250" height="220" fill="#D9329E"/>
+<rect x="250" y="0" width="250" height="220" fill="#F2EB80"/>
+<rect x="0" y="220" width="500" height="280" fill="#8FD95B"/>
 
 <polygon fill="#5196A6"
 points="0,0 200,0 0,150" 
@@ -15,13 +16,13 @@ points="0,0 200,0 0,150"
 cx="330" cy="140" rx="40" ry="110"
 stroke="black"
 stroke-width="3" 
-fill="#949C9A"
+fill="#6DDAF2"
 />
 <ellipse transform="rotate(-160, 320, 169)"  
 cx="320" cy="169" rx="21" ry="61"
 stroke="black"
 stroke-width="3" 
-fill="#56231D"
+fill="##30A8F2"
 />
 
 <!-- Orelha Esquerda -->
@@ -29,13 +30,13 @@ fill="#56231D"
 cx="170" cy="140" rx="40" ry="110"
 stroke="black"
 stroke-width="3" 
-fill="#949C9A"
+fill="#6DDAF2"
 />
 <ellipse transform="rotate(160, 180, 169)"  
 cx="180" cy="169" rx="21" ry="61"
 stroke="black"
 stroke-width="3" 
-fill="#56231D"
+fill="#30A8F2"
 />
 
 <!-- Cabeça -->
@@ -43,7 +44,7 @@ fill="#56231D"
 cx="250" cy="300" r="100"
 stroke="black"
 stroke-width="3"
-fill="#949C9A"
+fill="#6DDAF2"
 />
 
 <!-- Olho Esquerdo -->
@@ -70,7 +71,7 @@ fill="black"
 cx="250" cy="336" r="14"
 fill="black"
 />
-<rect x="236" y="322" width="28" height="14" fill="#949C9A"/>
+<rect x="236" y="322" width="28" height="14" fill="#6DDAF2"/>
 
 <!-- Boca -->
 <path d="M 250,350 Q 245,370 223,360" stroke="black" stroke-width="4"  fill="none" />
