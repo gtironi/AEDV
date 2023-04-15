@@ -40,4 +40,8 @@ stroke-width="3"
 fill="white"
 />
 
+<!-- Bigodes -->
+ <path d="M 20,100 Q 150,20 280,100" stroke="black" fill="none" />
+
+
 </svg>`
