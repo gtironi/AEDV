@@ -14,4 +14,11 @@ stroke-width="3"
 fill="white"
 />
 
+<ellipse
+cx="170" cy="140" rx="40" ry="110" transform="rotate(250 [170 140])"
+stroke="black"
+stroke-width="3" 
+fill="white"
+/>
+
 </svg>`
