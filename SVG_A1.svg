@@ -7,14 +7,14 @@ stroke-width="5"
 fill="white"
 />
 
-<ellipse transform="rotate(70 [170 140])"
+<ellipse transform="rotate(70, 170, 140)"
 cx="170" cy="140" rx="40" ry="110"
 stroke="black"
 stroke-width="3" 
 fill="white"
 />
 
-<ellipse transform="rotate(250 [170 140])"
+<ellipse transform="rotate(250, 170, 140)"
 cx="170" cy="140" rx="40" ry="110"
 stroke="black"
 stroke-width="3" 
