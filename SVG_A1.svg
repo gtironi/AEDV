@@ -1,4 +1,6 @@
-html` <svg  width="500" height="500">
+html` <!DOCTYPE svg>
+
+<svg  width="500" height="500">
 
 <!-- Fundo -->
 <rect x="0" y="0" width="250" height="310" fill="#D9329E"/>
