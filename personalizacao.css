@@ -1,5 +1,16 @@
 .svg{
-    position: fixed;
+    display: flex;
+}
+
+.coluna1{
+    flex: 1;
+    margin-right: 500px;
+    padding: 2%;
+    font-size: 18px
+}
+
+.coluna2{
+    position: absolute;
     top: 0;
     right: 0;
     margin: 2%;
