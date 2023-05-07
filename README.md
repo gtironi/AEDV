@@ -13,4 +13,8 @@ Para baixar o HTML, clique [aqui](https://github.com/gtironi/AEDV/tree/main/HTML
 
 ## R
 
-Contém os arquivos com os gráficos de anscombe, resolução do capítulo 3 e gráfico histórico.
+Contém os arquivos com os gráficos de **anscombe**, **resolução do capítulo 3** e **gráfico histórico**.
+
+Também contém o arquivo **.rds** com a base de dados usada para o gráfico histórico.
+
+Para visualização dos gráficos, os arquivos devem ser baixados e executados, as bibliotecas devem estar instaladas previamente.
