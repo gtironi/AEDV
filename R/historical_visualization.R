@@ -9,7 +9,7 @@ library(stats)
 # preparando o dado para o ggplot2 --------------------------------------
 
 ## Dado retirado de https://plot.ly/~MattSundquist/2404/exports-and-imports-to-and-from-denmark-norway-from-1700-to-1780/#plot
-playfair <- readRDS("/home/gtironi/Documentos/R/william_playfair.rds")
+playfair <- readRDS("william_playfair.rds")
 
 ## create min for geom_ribbon
 playfair$min <- with(playfair, pmin(exp, imp))
