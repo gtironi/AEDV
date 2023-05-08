@@ -24,8 +24,8 @@ molten_data <- melt(playfair,  id.vars = c("year", "min"))
 ggplot(molten_data, aes(x = year, y = value)) + 
   geom_line(aes(col = variable), size  = 1) +
   geom_ribbon(aes(ymin = min, ymax = value, fill = variable), alpha = 0.3) +
-  scale_color_manual(values = c("darkred", "gold3"), guide = F) + 
-  scale_fill_manual(values = c("#90752d", "#BB5766"), guide = F) + 
+  scale_color_manual(values = c("darkred", "gold3"), guide = "none") + 
+  scale_fill_manual(values = c("#90752d", "#BB5766"), guide = "none") + 
   theme_bw() + 
   annotate("text", x = year[5],        y = 100000, label = "Line", angle = 25, size = 3, family = "Garamond") +
   annotate("text", x = year[6] - 100,  y = 104000, label = "of",  angle = 0, size = 3, family = "Garamond") +
@@ -40,8 +40,9 @@ ggplot(molten_data, aes(x = year, y = value)) +
   ggtitle("Exports and Imports to and from DENMARK & NORWAY from 1700 to 1780") + 
   scale_x_date(breaks = seq(year[1], year[18], by = "10 years"), 
                labels = format(seq(year[1], year[18], by = "10 years"), "%Y")) + 
-  scale_y_continuous(breaks = seq(0, 190e3, by = 10e3), 
-                     labels = seq(0, 190, by = 10)) +
+  scale_y_continuous(breaks = seq(0, 190e3, 10e3), 
+                     labels = seq(0, 190, 10),
+                     position = "right") +
   theme(title = element_text(size = 8, face = 'bold', family = "Garamond"), 
         axis.title = element_blank(),
         axis.text = element_text(family = "Garamond"), 
