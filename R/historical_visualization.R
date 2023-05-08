@@ -26,16 +26,16 @@ ggplot(molten_data, aes(x = year, y = value)) +
   scale_color_manual(values = c("darkred", "gold3"), guide = "none") + 
   scale_fill_manual(values = c("#90752d", "#BB5766"), guide = "none") + 
   theme_bw() + 
-  annotate("text", x = year[5],        y = 100000, label = "Line", angle = 25, size = 3) +
-  annotate("text", x = year[6] - 100,  y = 104000, label = "of",  angle = 0, size = 3) +
-  annotate("text", x = year[7],        y = 101000, label = "Imports", angle = 340, size = 3) +
-  annotate("text", x = year[5] + 400,  y = 73000,  label = "Line",  angle = 345, size = 3) +
-  annotate("text", x = year[6],        y = 70000,  label = "of",  angle = 330, size = 3) +
-  annotate("text", x = year[7] - 200,  y = 64000,  label = "Exports",  angle = 335, size = 3) +
+  annotate("text", x = year[5],        y = 101000, label = "Line", angle = 25, size = 3) +
+  annotate("text", x = year[6] - 100,  y = 105000, label = "of",  angle = 0, size = 3) +
+  annotate("text", x = year[7],        y = 102000, label = "Imports", angle = 340, size = 3) +
+  annotate("text", x = year[5] + 400,  y = 72800,  label = "Line",  angle = 345, size = 3) +
+  annotate("text", x = year[6],        y = 69800,  label = "of",  angle = 330, size = 3) +
+  annotate("text", x = year[7] - 200,  y = 63600,  label = "Exports",  angle = 335, size = 3) +
   annotate("text", x = year[8],        y = 83000,  label = "italic('BALANCE AGAINST')",  angle = 0, parse = TRUE) +
   annotate("text", x = year[16] + 400, y = 110000, label = "italic('BALANCE in\nFAVOUR of\nENGLAND')",  angle = 0, parse = TRUE) +
-  annotate("text", x = year[16],       y = 82000,  label = "Imports",  angle = 30, size = 3) +
-  annotate("text", x = year[14] + 200, y = 131000, label = "Exports",  angle = 65, size = 3) +
+  annotate("text", x = year[16],       y = 80800,  label = "Imports",  angle = 28, size = 3) +
+  annotate("text", x = year[14] + 100, y = 131000, label = "Exports",  angle = 65, size = 3) +
   ggtitle("Exports and Imports to and from DENMARK & NORWAY from 1700 to 1780") + 
   scale_x_date(breaks = seq(year[1], year[18], by = "10 years"), 
                labels = format(seq(year[1], year[18], by = "10 years"), "%Y")) + 
