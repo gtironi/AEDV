@@ -22,7 +22,7 @@ molten_data <- melt(playfair,  id.vars = c("year", "min"))
 # ggplot2 ---------------------------------------------------------------
 
 ggplot(molten_data, aes(x = year, y = value)) + 
-  geom_line(aes(col = variable), size  = 1) +
+  geom_line(aes(col = variable), size  = 1.1) +
   geom_ribbon(aes(ymin = min, ymax = value, fill = variable), alpha = 0.3) +
   scale_color_manual(values = c("darkred", "gold3"), guide = "none") + 
   scale_fill_manual(values = c("#90752d", "#BB5766"), guide = "none") + 
@@ -44,7 +44,9 @@ ggplot(molten_data, aes(x = year, y = value)) +
                      labels = seq(0, 190, 10),
                      position = "right",
                      limits = c(10000, NA)) +
-  theme(title = element_text(size = 8, face = 'bold', family = "Garamond"), 
+  theme(title = element_text(size = 8, face = 'bold', family = "Garamond"),
+        plot.title = element_text(hjust=0.5),
         axis.title = element_blank(),
         axis.text = element_text(family = "Garamond"), 
-        panel.grid.minor = element_blank()) 
+        panel.grid.minor = element_blank(),
+        plot.background = ggplot2::element_rect(fill = "transparent", colour = NA)) 
