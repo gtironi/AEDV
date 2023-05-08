@@ -49,4 +49,4 @@ ggplot(molten_data, aes(x = year, y = value)) +
         axis.title = element_blank(),
         axis.text = element_text(family = "Garamond"), 
         panel.grid.minor = element_blank(),
-        plot.background = ggplot2::element_rect(fill = "transparent", colour = NA)) 
+        plot.background = ggplot2::element_rect(fill = "transparent", colour = NA))
