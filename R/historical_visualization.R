@@ -5,11 +5,16 @@ rm(list = ls())
 library(reshape2)
 library(ggplot2)
 library(stats)
+library(extrafont)
 
 # preparando o dado para o ggplot2 --------------------------------------
 
 ## Dado retirado de https://plot.ly/~MattSundquist/2404/exports-and-imports-to-and-from-denmark-norway-from-1700-to-1780/#plot
 playfair <- readRDS("william_playfair.rds")
+
+
+#e7e1da
+#faf5e5
 
 ## create min for geom_ribbon
 playfair$min <- with(playfair, pmin(exp, imp))
@@ -49,4 +54,5 @@ ggplot(molten_data, aes(x = year, y = value)) +
         axis.title = element_blank(),
         axis.text = element_text(family = "Garamond"), 
         panel.grid.minor = element_blank(),
-        plot.background = ggplot2::element_rect(fill = "transparent", colour = NA))
+        panel.grid.major = element_line(color = "#c8c8c6"),
+        panel.background = element_rect(fill = "#fcfcfa"))
