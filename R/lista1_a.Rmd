@@ -15,7 +15,7 @@ output:
     toc: yes
 ---
 
-```{r pressure, echo=FALSE}
+```{r, echo=FALSE}
 library(utf8)
 Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
 ```
@@ -41,6 +41,7 @@ library(ggplot2)
 ggplot(anscombe, aes(x = x1, y = y1)) + geom_point() 
 
 ```
+
 Contudo, ainda era necessário adiconar a linha de tendência desses pontos. Para isso, adicionei a seguinte linha de comando:
 
 ```
