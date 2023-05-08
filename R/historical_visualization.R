@@ -42,7 +42,8 @@ ggplot(molten_data, aes(x = year, y = value)) +
                labels = format(seq(year[1], year[18], by = "10 years"), "%Y")) + 
   scale_y_continuous(breaks = seq(0, 190e3, 10e3), 
                      labels = seq(0, 190, 10),
-                     position = "right") +
+                     position = "right",
+                     limits = c(10000, NA)) +
   theme(title = element_text(size = 8, face = 'bold', family = "Garamond"), 
         axis.title = element_blank(),
         axis.text = element_text(family = "Garamond"), 
