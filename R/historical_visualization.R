@@ -20,7 +20,7 @@ molten_data <- melt(playfair,  id.vars = c("year", "min"))
 
 # ggplot2 ---------------------------------------------------------------
 
-p <- ggplot(molten_data, aes(x = year, y = value)) + 
+ggplot(molten_data, aes(x = year, y = value)) + 
   geom_line(aes(col = variable), size  = 1.1) +
   geom_ribbon(aes(ymin = min, ymax = value, fill = variable), alpha = 0.3) +
   scale_color_manual(values = c("darkred", "gold3"), guide = "none") + 
@@ -36,6 +36,10 @@ p <- ggplot(molten_data, aes(x = year, y = value)) +
   annotate("text", x = year[16] + 400, y = 110000, label = "italic('BALANCE in\nFAVOUR of\nENGLAND')",  angle = 0, parse = TRUE) +
   annotate("text", x = year[16],       y = 80800,  label = "Imports",  angle = 28, size = 3) +
   annotate("text", x = year[14] + 100, y = 131000, label = "Exports",  angle = 65, size = 3) +
+  annotate("text", x = year[4],  y = 145000,  label = "Frederick IV", size = 6) +
+  annotate("text", x = year[8]+1100,  y = 145000,  label = "Christian VI", size = 6) +
+  annotate("text", x = year[12]+200,  y = 165000,  label = "Frederick V", size = 6) +
+  annotate("text", x = year[17],  y = 45000,  label = "Christian VII", size = 6) +
   ggtitle("Exports and Imports to and from DENMARK & NORWAY from 1700 to 1780") + 
   scale_x_date(breaks = seq(year[1], year[18], by = "10 years"), 
                labels = format(seq(year[1], year[18], by = "10 years"), "%Y")) + 
