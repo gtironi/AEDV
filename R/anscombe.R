@@ -3,10 +3,11 @@ rm(list = ls())
 
 # carrega os pacotes ----------------------------------------------------
 library(ggplot2)
+library(gridExtra)
 
-ggplot(anscombe, aes(x = x1, y = y1)) +
+p1 <- ggplot(anscombe, aes(x = x1, y = y1)) +
   geom_point() +
-  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  geom_smooth(method = "lm", color = "Red", fullrange = TRUE) +
   ggtitle("Gráfico x1 vs y1") +
   theme_test() +
   theme(plot.title = element_text(hjust=0.5)) +
@@ -15,7 +16,7 @@ ggplot(anscombe, aes(x = x1, y = y1)) +
   scale_x_continuous(breaks = seq(4, 18, 2),
                      limits = c(4, 18))
 
-ggplot(anscombe, aes(x = x2, y = y2)) +
+p2 <- ggplot(anscombe, aes(x = x2, y = y2)) +
   geom_point() +
   geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
   ggtitle("Gráfico x2 vs y2") +
@@ -26,7 +27,7 @@ ggplot(anscombe, aes(x = x2, y = y2)) +
   scale_x_continuous(breaks = seq(4, 18, 2),
                      limits = c(4, 18))
 
-ggplot(anscombe, aes(x = x3, y = y3)) +
+p3 <- ggplot(anscombe, aes(x = x3, y = y3)) +
   geom_point() +
   geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
   ggtitle("Gráfico x3 vs y3") +
@@ -37,7 +38,7 @@ ggplot(anscombe, aes(x = x3, y = y3)) +
   scale_x_continuous(breaks = seq(4, 18, 2),
                      limits = c(4, 18))
 
-ggplot(anscombe, aes(x = x4, y = y4)) +
+p4 <- ggplot(anscombe, aes(x = x4, y = y4)) +
   geom_point() +
   geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
   ggtitle("Gráfico x4 vs y4") +
@@ -47,3 +48,8 @@ ggplot(anscombe, aes(x = x4, y = y4)) +
                      limits = c(4, NA)) +
   scale_x_continuous(breaks = seq(4, 18, 2),
                      limits = c(4, NA))
+
+#plotando todos juntos
+grid.arrange(p1, p2,
+             p3, p4,
+             ncol=2, nrow=2)
