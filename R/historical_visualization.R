@@ -20,7 +20,7 @@ molten_data <- melt(playfair,  id.vars = c("year", "min"))
 
 # ggplot2 ---------------------------------------------------------------
 
-ggplot(molten_data, aes(x = year, y = value)) + 
+p <- ggplot(molten_data, aes(x = year, y = value)) + 
   geom_line(aes(col = variable), size  = 1.1) +
   geom_ribbon(aes(ymin = min, ymax = value, fill = variable), alpha = 0.3) +
   scale_color_manual(values = c("darkred", "gold3"), guide = "none") + 
@@ -49,4 +49,8 @@ ggplot(molten_data, aes(x = year, y = value)) +
         axis.text = element_text(), 
         panel.grid.minor = element_blank(),
         panel.grid.major = element_line(color = "#c8c8c6"),
-        panel.background = element_rect(fill = "#fcfcfa"))
+        panel.background = element_rect(fill = "#fcfcfa")) +
+  geom_vline(xintercept = year[7], linetype = "dashed") +
+  geom_vline(xintercept = year[10]+300, linetype = "dashed") +
+  geom_vline(xintercept = year[15]+100, linetype = "dashed")
+
