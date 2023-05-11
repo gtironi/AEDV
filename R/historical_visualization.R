@@ -43,7 +43,7 @@ ggplot(molten_data, aes(x = year, y = value)) +
                      labels = seq(0, 190, 10),
                      position = "right",
                      limits = c(10000, NA)) +
-  theme(title = element_text(size = 8, face = 'bold'),
+  theme(title = element_text(size = 14, face = 'bold'),
         plot.title = element_text(hjust=0.5),
         axis.title = element_blank(),
         axis.text = element_text(), 
