@@ -1,10 +1,9 @@
-# carrega os pacotes ----------------------------------------------------
+# Carregando os pacotes -------------------------------------------------
 library(ggplot2)
 library(gridExtra)
 library(grid)
 
 # Definindo os gráficos -------------------------------------------------
-
 p1 <- ggplot(anscombe, aes(x = x1, y = y1)) +
   geom_point() +
   geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
@@ -45,7 +44,7 @@ p4 <- ggplot(anscombe, aes(x = x4, y = y4)) +
   scale_x_continuous(breaks = seq(4, 18, 2),
                      limits = c(4, NA))
 
-# plotando os gráficos juntos -------------------------------------------
+# Plotando os gráficos juntos -------------------------------------------
 grid.arrange(p1, p2,
              p3, p4,
              ncol=2, nrow=2,

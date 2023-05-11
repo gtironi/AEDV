@@ -94,9 +94,9 @@ Com isso, podemos usar esse template e montar os gráficos para os quatro conjun
 grid.arrange(p1, p2, p3, p4, ncol=2, nrow=2)
 ```
 
-Ficando com o seguinte código e resultado:
+Ficando com o seguinte e resultado:
 
-```{r, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # carrega os pacotes ----------------------------------------------------
 library(ggplot2)
 library(gridExtra)
@@ -151,4 +151,196 @@ p4 <- ggplot(anscombe, aes(x = x4, y = y4)) +
 grid.arrange(p1, p2,
              p3, p4,
              ncol=2, nrow=2)
+```
+
+Ao fim, achei que ficaria mais interessante retirar os títulos dos gráficos individualemente e colocar um titulo geral, ficando da seguinte forma:
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Carregando os pacotes -------------------------------------------------
+library(ggplot2)
+library(gridExtra)
+library(grid)
+
+# Definindo os gráficos -------------------------------------------------
+p1 <- ggplot(anscombe, aes(x = x1, y = y1)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, 12)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, 18))
+
+p2 <- ggplot(anscombe, aes(x = x2, y = y2)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, 12)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, 18))
+
+p3 <- ggplot(anscombe, aes(x = x3, y = y3)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, NA)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, 18))
+
+p4 <- ggplot(anscombe, aes(x = x4, y = y4)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, NA)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, NA))
+
+# Plotando os gráficos juntos -------------------------------------------
+grid.arrange(p1, p2,
+             p3, p4,
+             ncol=2, nrow=2,
+             top = textGrob("Quarteto de Anscombe",gp=gpar(fontsize=28,font=2)))
+```
+
+Assim finalizei a tarefa, plotando o quarteto de Anscombe compretamente e o cógido final ficou da seguinte forma:
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+ggplot(anscombe, aes(x = x2, y = y2)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  ggtitle("Gráfico x2 vs y2") +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, 12)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, 18))
+```
+
+Com isso, podemos usar esse template e montar os gráficos para os quatro conjuntos de dados de Anscombe. Após isso, basta juntarmos os gráficos em um mesmo layout. Para tal, usei a biblioteca **gridExtra**, usando o seguinte comando.
+
+```
+grid.arrange(p1, p2, p3, p4, ncol=2, nrow=2)
+```
+
+Ficando com o seguinte e resultado:
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# carrega os pacotes ----------------------------------------------------
+library(ggplot2)
+library(gridExtra)
+
+# Definindo os gráficos -------------------------------------------------
+
+p1 <- ggplot(anscombe, aes(x = x1, y = y1)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  ggtitle("Gráfico x1 vs y1") +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, 12)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, 18))
+
+p2 <- ggplot(anscombe, aes(x = x2, y = y2)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  ggtitle("Gráfico x2 vs y2") +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, 12)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, 18))
+
+p3 <- ggplot(anscombe, aes(x = x3, y = y3)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  ggtitle("Gráfico x3 vs y3") +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, NA)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, 18))
+
+p4 <- ggplot(anscombe, aes(x = x4, y = y4)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  ggtitle("Gráfico x4 vs y4") +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, NA)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, NA))
+
+# plotando os gráficos juntos -------------------------------------------
+grid.arrange(p1, p2,
+             p3, p4,
+             ncol=2, nrow=2)
+```
+
+Ao fim, achei que ficaria mais interessante retirar os títulos dos gráficos individualemente e colocar um titulo geral, ficando da seguinte forma:
+
+```
+# Carregando os pacotes -------------------------------------------------
+library(ggplot2)
+library(gridExtra)
+library(grid)
+
+# Definindo os gráficos -------------------------------------------------
+p1 <- ggplot(anscombe, aes(x = x1, y = y1)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, 12)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, 18))
+
+p2 <- ggplot(anscombe, aes(x = x2, y = y2)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, 12)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, 18))
+
+p3 <- ggplot(anscombe, aes(x = x3, y = y3)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, NA)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, 18))
+
+p4 <- ggplot(anscombe, aes(x = x4, y = y4)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "Red", se = FALSE, fullrange = TRUE) +
+  theme_test() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_y_continuous(breaks = seq(4, 12, 2),
+                     limits = c(4, NA)) +
+  scale_x_continuous(breaks = seq(4, 18, 2),
+                     limits = c(4, NA))
+
+# Plotando os gráficos juntos -------------------------------------------
+grid.arrange(p1, p2,
+             p3, p4,
+             ncol=2, nrow=2,
+             top = textGrob("Quarteto de Anscombe",gp=gpar(fontsize=28,font=2)))
 ```
