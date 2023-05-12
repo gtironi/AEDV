@@ -4,7 +4,7 @@ author: "Gustavo Tironi"
 date: "10/05/2023"
 output:
   pdf_document:
-    toc: yes
+    toc: no
   html_document:
     number_sections: yes
     highlight: tango
@@ -17,7 +17,7 @@ output:
 
 # Escolha do gráfico
 
-Inicialmente, a partir do material disponibilizado no **ECLASS** achei interessante o gráfico do Willian Playfair então pesquisei na internet e achei o um gráfico feito em R, disponivel [aqui](https://github.com/carloscinelli/Blog-Scripts) e mostrado a seguir:
+Inicialmente, a partir do material disponibilizado no **ECLASS** achei interessante o gráfico do Willian Playfair então pesquisei na internet e achei um gráfico feito em R, disponível [aqui](https://github.com/carloscinelli/Blog-Scripts) e mostrado a seguir:
 
 <center>
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -58,7 +58,7 @@ ggplot(molten_data, aes(x = year, y = value)) +
 ```
 </center>
 
-Vale pontuar que foram necessárias algumas mudanças no código original para que funcionasse corretamente, já que o mesmo contêm uma fonte de texto a qual não obtive acesso e possui alguns comando que mudaram nas versões mais recentes do R.
+Vale pontuar que foram necessárias algumas mudanças no código original para que funcionasse corretamente, já que o mesmo contêm uma fonte de texto a qual não obtive acesso e possui alguns comandos que mudaram nas versões mais recentes do R.
 
 # Modificando o gráfico
 
@@ -74,7 +74,7 @@ Após isso, resolvi arrumar também a escala do eixo y, já que o original inici
 scale_y_continuous(limits = c(10000, NA))
 ```
 
-Após isso, fiz varias mudanças menores, como mudança no **título**, na **largura da linha**, na **posição dos textos** e nas **cores**. Ficando com o seguinte gráfico ao final das mudanças:
+Após isso, fiz várias mudanças menores, como mudança no **título**, na **largura da linha**, na **posição dos textos** e nas **cores**. Ficando com o seguinte gráfico ao final das mudanças:
 
 <center>
 ```{r fig.width = 8, fig.height = 5, echo=FALSE, warning=FALSE, message=FALSE}
@@ -122,14 +122,14 @@ ggplot(molten_data, aes(x = year, y = value)) +
 ```
 </center>
 
-Por fim, resolvi adiconar informações ao gráfico, apenas com o fim de aprender alguns comandos novos em R. Então resolvi adicionar **linhas verticais** que separam o gráfico pelos reis que governavam em cada periodo. 
-Para isso, eu precisava adicionar as **linhas verticais** nas datas adequadas, e indicar com um **texto** qual rei governava o periodo. Para adicionar as linhas adicionei variaçẽos do seguinte comando:
+Por fim, resolvi adicionar informações ao gráfico, apenas com o fim de aprender alguns comandos novos em R. Então resolvi adicionar **linhas verticais** que separam o gráfico pelos reis que governavam em cada período. 
+Para isso, eu precisava adicionar as **linhas verticais** nas datas adequadas, e indicar com um **texto** qual rei governava o período. Para adicionar as linhas adicionei variações do seguinte comando:
 
 ```
 geom_vline(xintercept = (data de mudança do reinado), linetype = "dashed")
 ```
 
-Agora para adicionar os textos, usei um comando que já tinha sido usado pelo autor original do gráfico, que é o **annotate**, variando os seus parametros. Ao final, o resultado foi o seguinte:
+Agora para adicionar os textos, usei um comando que já tinha sido usado pelo autor original do gráfico, que é o **annotate**, variando os seus parâmetros. Ao final, o resultado foi o seguinte:
 
 <center>
 ```{r fig.width = 8, fig.height = 5, echo=FALSE, warning=FALSE, message=FALSE}
