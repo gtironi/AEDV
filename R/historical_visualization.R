@@ -21,7 +21,7 @@ ggplot(molten_data, aes(x = year, y = value)) +
   annotate("text", x = year[5] + 400,  y = 72000,  label = "Line",  angle = 345, size = 3) +
   annotate("text", x = year[6],        y = 69000,  label = "of",  angle = 330, size = 3) +
   annotate("text", x = year[7] - 200,  y = 62400,  label = "Exports",  angle = 335, size = 3) +
-  annotate("text", x = year[8],        y = 83000,  label = 'BALANCE AGAINST',  angle = 0, fontface = "bold.italic") +
+  annotate("text", x = year[8]+150,        y = 83000,  label = 'BALANCE AGAINST',  angle = 0, fontface = "bold.italic") +
   annotate("text", x = year[16] + 400, y = 110000, label = 'BALANCE in\nFAVOUR of\nENGLAND',  angle = 0, fontface = "bold.italic") +
   annotate("text", x = year[16],       y = 80800,  label = "Imports",  angle = 20, size = 3) +
   annotate("text", x = year[14] + 100, y = 131000, label = "Exports",  angle = 55, size = 3) +
