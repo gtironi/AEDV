@@ -90,3 +90,16 @@ p13 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
   scale_x_log10()
 
 p13
+
+p14 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(mapping = aes(color = continent)) +
+  geom_smooth(method =  "loess") + 
+  scale_x_log10()
+
+p14
+
+p15 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(mapping = aes(color = log(pop))) +
+  scale_x_log10()
+
+p15
