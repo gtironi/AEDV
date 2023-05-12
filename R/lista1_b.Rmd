@@ -1,30 +1,122 @@
 ---
-title: "lista1_b"
+title: "Lista 1 - Exercício A"
 author: "Gustavo Tironi"
-date: "2023-05-10"
-output: html_document
+date: "08/05/2023"
+output:
+  html_document:
+    number_sections: yes
+    highlight: tango
+    theme: cerulean
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smmoth_scroll: no
+  pdf_document:
+    toc: no
+    fig_width: 5
+    fig_height: 4
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+library("ggplot2")
+library("gapminder")
+library("gridExtra")
+library("grid")
+
+p1 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()
+
+p2 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_smooth()
+
+p3 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() + 
+  geom_smooth()
+
+p4 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() + 
+  geom_smooth(method =  "lm")
+
+p5 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() + 
+  geom_smooth(method =  "lm") + 
+  scale_x_log10()
+
+p6 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() + 
+  geom_smooth(method =  "lm") + 
+  scale_x_log10(labels = scales::dollar)
+
+p7 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp, color = continent)) + 
+  geom_point() +
+  geom_smooth(method =  "loess") + 
+  scale_x_log10()
+
+p8 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp, color = "purple")) + 
+  geom_point() +
+  geom_smooth(method =  "loess") + 
+  scale_x_log10()
+
+p9 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(color = "purple") +
+  geom_smooth(method =  "loess") + 
+  scale_x_log10()
+
+p10 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(alpha = 0.3) +
+  geom_smooth(color = "orange", se = FALSE, size = 2, method =  "lm") + 
+  scale_x_log10()
+
+p11 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(alpha = 0.3) +
+  geom_smooth(method =  "lm") + 
+  scale_x_log10(labels = scales::dollar) +
+  labs(x = "GDP Per capita", y = "Life Expectancy in Years",
+       title = "Economic Growth and Life Expectancy",
+       subtitle = "Data points are country-years",
+       caption = "Source: Gapminder.")
+
+p12 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp, color = continent, fill = continent)) + 
+  geom_point() +
+  geom_smooth(method =  "loess") + 
+  scale_x_log10()
+
+p13 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point() +
+  geom_smooth(method =  "loess") + 
+  scale_x_log10()
+
+p14 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(mapping = aes(color = continent)) +
+  geom_smooth(method =  "loess") + 
+  scale_x_log10()
+
+p15 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(mapping = aes(color = log(pop))) +
+  scale_x_log10()
 ```
 
-## R Markdown
+# 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r fig.height=27, echo=FALSE, warning=FALSE, message=FALSE}
+grid.arrange(p1, p2,
+             p3, p4,
+             p5, p6,
+             ncol=2, nrow=3)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r fig.height=14, echo=FALSE, warning=FALSE, message=FALSE}
+grid.arrange(p7, p8,
+             p9, p12,
+             ncol=2, nrow=2)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r fig.height=10, echo=FALSE, warning=FALSE, message=FALSE}
+grid.arrange(p10, p11, p13,
+             ncol=3, nrow=1)
+```
+
+```{r fig.height=12, echo=FALSE, warning=FALSE, message=FALSE}
+grid.arrange(p14, p15,
+             ncol=2, nrow=1)
+```
