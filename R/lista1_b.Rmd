@@ -13,8 +13,8 @@ output:
       smmoth_scroll: no
   pdf_document:
     toc: no
-    fig_width: 5
-    fig_height: 4
+    fig_width: 8
+    fig_height: 5
 ---
 
 ```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
@@ -98,27 +98,40 @@ p15 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
 
 # Fazendo os gráficos conforme o livro
 
-Para começar, resolvi copiar cada um dos gráficos literalmente conforme apresentados no livro. Nesse primeiro quadro estão apresentados o gráfico de dispersão da variável **gdpPercap** vs **lifeExp** sem nenhuma mudança na cor. Inicialmente foi plotado o apenas os pontos, que corresponde ao gráfico superior esquerdo. Posteriomente foi plotado a linha que representa
+Para começar, resolvi copiar cada um dos gráficos literalmente conforme apresentados no livro. Nesse primeiro quadro estão apresentados o gráfico de dispersão da variável **gdpPercap** vs **lifeExp** sem nenhuma mudança na cor. Inicialmente foi plotado o apenas os pontos, que corresponde ao gráfico superior esquerdo. Posteriormente foi plotado a linha que representa esses pontos, correspondendo ao gráfico superior direito. No mesmo caminho, o gráfico do meio a direita representa a junção dos dois anteriores.
+O gráfico do meio a direita representa o mesmo gráfico, mas com a linha sendo forcada a representar uma reta. Por fim, nos gráficos inferiores o eixo x foi colocado em escala logarítmica, sendo que no gráfico a direta o valor do eixo está formatado em dólares.
 
+<center>
 ```{r fig.height=8, fig.weigh=20, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p1, p2,
              p3, p4,
              p5, p6,
              ncol=2, nrow=3)
 ```
+</center>
 
-```{r fig.height=6, fig.weight=20, echo=FALSE, warning=FALSE, message=FALSE}
-grid.arrange(p7, p8,
-             p9, p12,
+Após isso, começamos a colorir os gráficos. O primeiro a esquerda, se trata de uma forma errada de tentar colorir, sendo dado o argumento **color = purple** dentro do parâmetro **mapping**. O gráfico a sua direita, por sua vez, apresenta a maneira correta, com o argumento **color** dentro de **geom_point**. Os gráficos inferiores, por sua vez, mostram como usar uma variável para colorir os pontos, sendo usado, nesse caso, a variável **continent**. A diferença entre eles é que o da direita preenche tanto a argumento **color**, quanto o **fill** conforme a variável em questão.
+
+<center>
+```{r fig.height=6, fig.weight=10, echo=FALSE, warning=FALSE, message=FALSE}
+grid.arrange(p8, p9,
+             p7, p12,
              ncol=2, nrow=2)
 ```
+</center>
 
+
+
+<center>
 ```{r fig.height=8, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p10, p11, p13,
              ncol=3, nrow=1)
 ```
+</center>
 
+<center>
 ```{r fig.height=12, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p14, p15,
              ncol=2, nrow=1)
 ```
+</center>

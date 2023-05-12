@@ -1,4 +1,4 @@
-library("tidyverse")
+library("ggplot2")
 library("gapminder")
 
 p1 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
