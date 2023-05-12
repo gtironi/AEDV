@@ -3,8 +3,6 @@ title: "Lista 1 - Exercício A"
 author: "Gustavo Tironi"
 date: "08/05/2023"
 output:
-  pdf_document:
-    toc: yes
   html_document:
     number_sections: yes
     highlight: tango
@@ -13,6 +11,10 @@ output:
     toc_float:
       collapsed: yes
       smmoth_scroll: no
+  pdf_document:
+    toc: no
+    fig_width: 5
+    fig_height: 4
 ---
 
 # Configurando o ambiente
@@ -52,7 +54,9 @@ ggplot(anscombe, aes(x = x1, y = y1)) +
 Então resolvi adicionar um título ao gráfico, retirar as linhas de grade e formatar a areá de plotagem, usando para isso os seguintes comandos:
 
 ```
-ggtitle("Gráfico x1 vs y1") + theme_test() + theme(plot.title = element_text(hjust=0.5))
+ggtitle("Gráfico x1 vs y1") + 
+theme_test() + 
+theme(plot.title = element_text(hjust=0.5))
 ```
 
 O **primeiro** comando, define o titulo, o **segundo** comando define um tema pré-definido do ggplot e o **terceiro** centraliza o título, ficando com um gráfico dessa forma:
@@ -70,7 +74,8 @@ ggplot(anscombe, aes(x = x1, y = y1)) +
 Então, para maior aproximação ao gráfico de Anscombe apresentado na internet, foram formatados os eixos, usando os seguintes comandos ou uma variação deles:
 
 ```
-scale_y_continuous(breaks = seq(4, 12, 2), limits = c(4, 12)) + scale_x_continuous(breaks = seq(4, 18, 2), limits = c(4, 18))
+scale_y_continuous(breaks = seq(4, 12, 2), limits = c(4, 12)) +
+scale_x_continuous(breaks = seq(4, 18, 2), limits = c(4, 18))
 ```
 
 <center>
