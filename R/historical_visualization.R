@@ -1,24 +1,13 @@
-# limpa o workspace -----------------------------------------------------
-rm(list = ls())
-
-# carregando os pacotes -------------------------------------------------
 library(reshape2)
 library(ggplot2)
 library(stats)
 
-# preparando o dado para o ggplot2 --------------------------------------
-
-## Dado retirado de https://plot.ly/~MattSundquist/2404/exports-and-imports-to-and-from-denmark-norway-from-1700-to-1780/#plot
 playfair <- readRDS("william_playfair.rds")
 
-## cria min para o geom_ribbon
 playfair$min <- with(playfair, pmin(exp, imp))
 year <- playfair$year
 
-## melt data
 molten_data <- melt(playfair,  id.vars = c("year", "min"))
-
-# ggplot2 ---------------------------------------------------------------
 
 ggplot(molten_data, aes(x = year, y = value)) + 
   geom_line(aes(col = variable), size  = 1.1) +
@@ -29,13 +18,13 @@ ggplot(molten_data, aes(x = year, y = value)) +
   annotate("text", x = year[5],        y = 101000, label = "Line", angle = 25, size = 3) +
   annotate("text", x = year[6] - 100,  y = 105000, label = "of",  angle = 0, size = 3) +
   annotate("text", x = year[7],        y = 102000, label = "Imports", angle = 340, size = 3) +
-  annotate("text", x = year[5] + 400,  y = 72800,  label = "Line",  angle = 345, size = 3) +
-  annotate("text", x = year[6],        y = 69800,  label = "of",  angle = 330, size = 3) +
-  annotate("text", x = year[7] - 200,  y = 63600,  label = "Exports",  angle = 335, size = 3) +
-  annotate("text", x = year[8],        y = 83000,  label = "italic('BALANCE AGAINST')",  angle = 0, parse = TRUE) +
-  annotate("text", x = year[16] + 400, y = 110000, label = "italic('BALANCE in\nFAVOUR of\nENGLAND')",  angle = 0, parse = TRUE) +
-  annotate("text", x = year[16],       y = 80800,  label = "Imports",  angle = 28, size = 3) +
-  annotate("text", x = year[14] + 100, y = 131000, label = "Exports",  angle = 65, size = 3) +
+  annotate("text", x = year[5] + 400,  y = 72000,  label = "Line",  angle = 345, size = 3) +
+  annotate("text", x = year[6],        y = 69000,  label = "of",  angle = 330, size = 3) +
+  annotate("text", x = year[7] - 200,  y = 62400,  label = "Exports",  angle = 335, size = 3) +
+  annotate("text", x = year[8],        y = 83000,  label = 'BALANCE AGAINST',  angle = 0, fontface = "bold.italic") +
+  annotate("text", x = year[16] + 400, y = 110000, label = 'BALANCE in\nFAVOUR of\nENGLAND',  angle = 0, fontface = "bold.italic") +
+  annotate("text", x = year[16],       y = 80800,  label = "Imports",  angle = 20, size = 3) +
+  annotate("text", x = year[14] + 100, y = 131000, label = "Exports",  angle = 55, size = 3) +
   annotate("text", x = year[4],  y = 145000,  label = "Frederick IV", size = 6) +
   annotate("text", x = year[8]+1100,  y = 145000,  label = "Christian VI", size = 6) +
   annotate("text", x = year[12]+200,  y = 165000,  label = "Frederick V", size = 6) +
@@ -47,7 +36,7 @@ ggplot(molten_data, aes(x = year, y = value)) +
                      labels = seq(0, 190, 10),
                      position = "right",
                      limits = c(10000, NA)) +
-  theme(title = element_text(size = 14, face = 'bold'),
+  theme(title = element_text(size = 12, face = 'bold'),
         plot.title = element_text(hjust=0.5),
         axis.title = element_blank(),
         axis.text = element_text(), 
