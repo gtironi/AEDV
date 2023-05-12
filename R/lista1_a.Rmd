@@ -3,6 +3,10 @@ title: "Lista 1 - Exercício A"
 author: "Gustavo Tironi"
 date: "08/05/2023"
 output:
+  pdf_document:
+    toc: no
+    fig_width: 5
+    fig_height: 4
   html_document:
     number_sections: yes
     highlight: tango
@@ -11,22 +15,17 @@ output:
     toc_float:
       collapsed: yes
       smmoth_scroll: no
-  pdf_document:
-    toc: no
-    fig_width: 5
-    fig_height: 4
 ---
 
 # Configurando o ambiente
 
-Inicialemente, como eu já tinha o R em meu computador, foi necessário instalar o RStudio e as bibliotecas usadas. Para isso, foi necessário instalar o RStudio pela internet, e então instalar a biblioteca **ggplot2**, necessária para esse exercicio. Para isso, foi necessário o seguinte comando:
+Inicialmente, como eu já tinha o R em meu computador, foi necessário instalar o RStudio e as bibliotecas usadas. Para isso, foi necessário instalar o RStudio pela internet, e então instalar a biblioteca **ggplot2**, necessária para esse exercício. Para isso, foi necessário o seguinte comando:
 
 ```
 install.packages("ggplot2")
 ```
 
 Com isso feito, pude começar a desenvolver os gráficos.
-
 
 # Desenvolvendo os gráficos - Anscombe
 
@@ -38,7 +37,8 @@ library(ggplot2)
 ggplot(anscombe, aes(x = x1, y = y1)) + geom_point() 
 ```
 </center>
-Contudo, ainda era necessário adiconar a linha de tendência desses pontos. Para isso, adicionei a seguinte linha de comando:
+
+Contudo, ainda era necessário adicionar a linha de tendência desses pontos. Para isso, adicionei a seguinte linha de comando:
 
 ```
 geom_smooth(method = "lm", color = "Red", se = FALSE)
@@ -51,6 +51,7 @@ ggplot(anscombe, aes(x = x1, y = y1)) +
   geom_smooth(method = "lm", color = "Red", se = FALSE)
 ```
 </center>
+
 Então resolvi adicionar um título ao gráfico, retirar as linhas de grade e formatar a areá de plotagem, usando para isso os seguintes comandos:
 
 ```
@@ -59,7 +60,7 @@ theme_test() +
 theme(plot.title = element_text(hjust=0.5))
 ```
 
-O **primeiro** comando, define o titulo, o **segundo** comando define um tema pré-definido do ggplot e o **terceiro** centraliza o título, ficando com um gráfico dessa forma:
+O **primeiro** comando, define o título, o **segundo** comando define um tema pré-definido do ggplot e o **terceiro** centraliza o título, ficando com um gráfico dessa forma:
 
 <center>
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -71,6 +72,7 @@ ggplot(anscombe, aes(x = x1, y = y1)) +
   theme(plot.title = element_text(hjust=0.5))
 ```
 </center>
+
 Então, para maior aproximação ao gráfico de Anscombe apresentado na internet, foram formatados os eixos, usando os seguintes comandos ou uma variação deles:
 
 ```
@@ -92,13 +94,14 @@ ggplot(anscombe, aes(x = x2, y = y2)) +
                      limits = c(4, 18))
 ```
 </center>
-Com isso, podemos usar esse template e montar os gráficos para os quatro conjuntos de dados de Anscombe. Após isso, basta juntarmos os gráficos em um mesmo layout. Para tal, usei a biblioteca **gridExtra**, usando o seguinte comando.
+
+Com isso, podemos usar esse modelo e montar os gráficos para os quatro conjuntos de dados de Anscombe. Após isso, basta juntarmos os gráficos em um mesmo layout. Para tal, usei a biblioteca **gridExtra**, usando o seguinte comando.
 
 ```
 grid.arrange(p1, p2, p3, p4, ncol=2, nrow=2)
 ```
 
-Ficando com o seguinte e resultado:
+Ficando com o seguinte resultado:
 
 <center>
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -158,7 +161,8 @@ grid.arrange(p1, p2,
              ncol=2, nrow=2)
 ```
 </center>
-Ao fim, achei que ficaria mais interessante retirar os títulos dos gráficos individualemente e colocar um titulo geral, ficando da seguinte forma:
+
+Ao fim, achei que ficaria mais interessante retirar os títulos dos gráficos individualmente e colocar um título geral, ficando da seguinte forma:
 
 <center>
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -215,7 +219,8 @@ grid.arrange(p1, p2,
              top = textGrob("Quarteto de Anscombe",gp=gpar(fontsize=28,font=2)))
 ```
 </center>
-Assim finalizei a tarefa, plotando o quarteto de Anscombe compretamente e o cógido final ficou da seguinte forma:
+
+Assim finalizei a tarefa, plotando o quarteto de Anscombe completamente e o código final ficou da seguinte forma:
 
 ```
 # Carregando os pacotes -------------------------------------------------
