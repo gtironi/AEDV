@@ -33,7 +33,7 @@ Inicialmente, plotei um gráfico de dispersão padrão, para as variáveis x1 e 
 
 <center>
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-library(ggplot2)
+library("ggplot2")
 ggplot(anscombe, aes(x = x1, y = y1)) + geom_point() 
 ```
 </center>
@@ -106,8 +106,8 @@ Ficando com o seguinte resultado:
 <center>
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # carrega os pacotes ----------------------------------------------------
-library(ggplot2)
-library(gridExtra)
+library("ggplot2")
+library("gridExtra")
 
 # Definindo os gráficos -------------------------------------------------
 
@@ -167,9 +167,9 @@ Ao fim, achei que ficaria mais interessante retirar os títulos dos gráficos in
 <center>
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Carregando os pacotes -------------------------------------------------
-library(ggplot2)
-library(gridExtra)
-library(grid)
+library("ggplot2")
+library("gridExtra")
+library("grid")
 
 # Definindo os gráficos -------------------------------------------------
 p1 <- ggplot(anscombe, aes(x = x1, y = y1)) +
@@ -224,9 +224,9 @@ Assim finalizei a tarefa, plotando o quarteto de Anscombe completamente e o cód
 
 ```
 # Carregando os pacotes -------------------------------------------------
-library(ggplot2)
-library(gridExtra)
-library(grid)
+library("ggplot2")
+library("gridExtra")
+library("grid")
 
 # Definindo os gráficos -------------------------------------------------
 p1 <- ggplot(anscombe, aes(x = x1, y = y1)) +
