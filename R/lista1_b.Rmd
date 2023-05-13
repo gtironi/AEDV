@@ -3,6 +3,10 @@ title: "Lista 1 - Exercício B"
 author: "Gustavo Tironi"
 date: "11/05/2023"
 output:
+  pdf_document:
+    toc: no
+    fig_width: 8
+    fig_height: 5
   html_document:
     number_sections: yes
     highlight: tango
@@ -11,10 +15,6 @@ output:
     toc_float:
       collapsed: yes
       smmoth_scroll: no
-  pdf_document:
-    toc: no
-    fig_width: 8
-    fig_height: 5
 ---
 
 ```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
@@ -164,17 +164,15 @@ p5 + theme(panel.grid = element_blank(),
 ```
 </center>
 
-Em seguida, 
+Em seguida, foi instalada a biblioteca **ggthemes** que traz novos temas padrão ao ggplot. Então, foi usado o tema **wsj**.
 
 <center>
 ```{r, fig.height=3, fig.width=5, echo=FALSE, warning=FALSE, message=FALSE}
-p9 + theme_wsj() +
-  labs(x = "GDP per capita",
-       y = "Expectativa de vida")
+p9 + theme_wsj()
 ```
 </center>
 
-
+Novamente, ainda usando a biblioteca **ggthemes**, resolvi usar o tema padrão **few**, dessa vez também modifiquei o título dos eixos.
 
 <center>
 ```{r, fig.height=3, fig.width=5, echo=FALSE, warning=FALSE, message=FALSE}
@@ -184,7 +182,8 @@ p11 + theme_few() +
 ```
 </center>
 
-
+Agora, irei começar a mexer com as cores. Para isso, usei o pacote **Wes Anderson**, disponibilizado no eclass. 
+Para isso, inicialmente usei o tema padrão do ggplot **classic**, depois, alterei as cores dos pontos do gráfico, usando a paleta de cores **Royal2** do pacote citado anteriormente.
 
 <center>
 ```{r, fig.height=3, fig.width=5, echo=FALSE, warning=FALSE, message=FALSE}
@@ -194,7 +193,7 @@ p12 + theme_classic() +
 ```
 </center>
 
-
+Novamente, mexi com as cores usando o pacote **Wes Anderson**. Contudo, nessa vez, usei a paleta de cores **Rushmore1** para alterar as cores dos pontos do gráfico.
 
 <center>
 ```{r, fig.height=3, fig.width=5, echo=FALSE, warning=FALSE, message=FALSE}
@@ -203,7 +202,7 @@ p14 + theme_classic() +
 ```
 </center>
 
-
+Por fim, modifiquei um gráfico alterando o seu tema para o tema padrão **excel** adicionei **titulo**, **nome dos eixos**, **subtitulo** e **fonte dos dados**.
 
 <center>
 ```{r, fig.height=4, fig.width=6, echo=FALSE, warning=FALSE, message=FALSE}
@@ -215,3 +214,5 @@ p15 + theme_excel() +
        caption = "Source: Gapminder")
 ```
 </center>
+
+Os códigos usados para gerar os gráficos, podem ser analisados no arquivo **lista1_b.Rmd**.
