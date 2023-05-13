@@ -7,8 +7,6 @@ output:
     number_sections: yes
     highlight: tango
     theme: cerulean
-    fig_width: 16
-    fig_height: 10
     toc: yes
     toc_float:
       collapsed: yes
@@ -24,6 +22,8 @@ library("ggplot2")
 library("gapminder")
 library("gridExtra")
 library("grid")
+library("ggthemes")
+library("wesanderson")
 
 p1 <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) + 
   geom_point()
@@ -104,7 +104,7 @@ Para começar, resolvi copiar cada um dos gráficos literalmente conforme aprese
 O gráfico do meio a direita representa o mesmo gráfico, mas com a linha sendo forcada a representar uma reta. Por fim, nos gráficos inferiores o eixo x foi colocado em escala logarítmica, sendo que no gráfico a direta o valor do eixo está formatado em dólares.
 
 <center>
-```{r, fig.height = 14, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, fig.height = 14, fig.width = 16, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p1, p2,
              p3, p4,
              p5, p6,
@@ -115,7 +115,7 @@ grid.arrange(p1, p2,
 Após isso, começamos a colorir os gráficos. O primeiro a esquerda, se trata de uma forma errada de tentar colorir, sendo dado o argumento **color = purple** dentro do parâmetro **mapping**. O gráfico a sua direita, por sua vez, apresenta a maneira correta, com o argumento **color** dentro de **geom_point**. Os gráficos inferiores, por sua vez, mostram como usar uma variável para colorir os pontos, sendo usado, nesse caso, a variável **continent**. A diferença entre eles é que o da direita preenche tanto a argumento **color**, quanto o **fill** conforme a variável em questão.
 
 <center>
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, fig.height = 10, fig.width = 16, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p8, p9,
              p7, p12,
              ncol=2, nrow=2)
@@ -125,7 +125,7 @@ grid.arrange(p8, p9,
 Da mesma maneira, foram feito mais três gráficos com o mesmo conjunto de dados. Sendo o da esquerda com os pontos mais transparetes e a reta modificada, o da direita com uma linha representando o metodo **loess** e o do meio com as escritas como titulo, fonte, etc.
 
 <center>
-```{r, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, fig.height = 6, fig.width = 16, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p10, p11, p13,
              ncol=3, nrow=1)
 ```
@@ -134,18 +134,84 @@ grid.arrange(p10, p11, p13,
 Por fim, foram feitos mais dois gráficos, sendo o da direita uma variação do gráfico que usou o metodo **loess**, porém com as cores representado os paises e o da direita é um grafico onde a cor dos pontos muda de intensidade de acordo com o **log da população**.
 
 <center>
-```{r, fig.height=8, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, fig.height = 8, fig.width = 16, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p14, p15,
              ncol=2, nrow=1)
 ```
 </center>
 
+Agora, com os gráficos copiados do capítulo 3, vamos começar a modifica-los.
+
 # Modificando os gráficos
 
-<center>
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+Para iniciar simplesmente mudei o tema de um dos gráficos, usando um dos temas padrão do ggplot, sendo usado, nesse caso o **theme_void()**.
 
+<center>
+```{r, fig.height=3, fig.width=5, echo=FALSE, warning=FALSE, message=FALSE}
+p3 + theme_void()
 ```
 </center>
 
-p3,p5,p9,,p11,p12,p14,p15
+Para a segunda modificação, o tema foi alterado por parâmetro a parâmetro, usado o comando **theme()** e **labs**. Para esse caso, foi modificado as linhas de grade, a cor do fundo, a linha e os títulos dos eixos.
+
+<center>
+```{r, fig.height=3, fig.width=5, echo=FALSE, warning=FALSE, message=FALSE}
+p5 + theme(panel.grid = element_blank(),
+           panel.background = element_rect(fill = "#adbac0"),
+           axis.line = element_line()) +
+  labs(x = "GDP per capita",
+       y = "Expectativa de vida")
+```
+</center>
+
+Em seguida, 
+
+<center>
+```{r, fig.height=3, fig.width=5, echo=FALSE, warning=FALSE, message=FALSE}
+p9 + theme_wsj() +
+  labs(x = "GDP per capita",
+       y = "Expectativa de vida")
+```
+</center>
+
+
+
+<center>
+```{r, fig.height=3, fig.width=5, echo=FALSE, warning=FALSE, message=FALSE}
+p11 + theme_few() +
+  labs(x = "GDP per capita",
+       y = "Expectativa de vida")
+```
+</center>
+
+
+
+<center>
+```{r, fig.height=3, fig.width=5, echo=FALSE, warning=FALSE, message=FALSE}
+p12 + theme_classic() +
+  scale_color_manual(values = wes_palette("Royal2", 5)) +
+  scale_fill_manual(values = wes_palette("Royal2", 5))
+```
+</center>
+
+
+
+<center>
+```{r, fig.height=3, fig.width=5, echo=FALSE, warning=FALSE, message=FALSE}
+p14 + theme_classic() +
+  scale_color_manual(values = wes_palette("Rushmore1", 5))
+```
+</center>
+
+
+
+<center>
+```{r, fig.height=4, fig.width=6, echo=FALSE, warning=FALSE, message=FALSE}
+p15 + theme_excel() +
+  labs(x = "GDP per capita",
+       y = "Expectativa de vida",
+       title = "Economic Growth and Life Expectancy",
+       subtitle = "Data points are country-years",
+       caption = "Source: Gapminder")
+```
+</center>
