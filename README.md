@@ -13,8 +13,8 @@ Para baixar o HTML, clique [aqui](https://github.com/gtironi/AEDV/tree/main/HTML
 
 ## R
 
-Contém os arquivos com os gráficos de **anscombe**, **resolução do capítulo 3** e **gráfico histórico**.
+Contém os arquivos **.R**,**.rds**,**.Rmd** e *PDF* e *HTML* gerado.
 
-Também contém o arquivo **.rds** com a base de dados usada para o gráfico histórico.
+O arquivo **.rds** contém a base de dados usada para gerar o gráfico histórico e pode ser acessado [aqui](https://github.com/gtironi/AEDV/blob/main/R/Lista4/william_playfair.rds)
 
-Para visualização dos gráficos, os arquivos devem ser baixados e executados, as bibliotecas devem estar instaladas previamente.
+Os arquivos **.R**,**.Rmd** e *PDF* e *HTML* podem ser acessados [aqui](https://github.com/gtironi/AEDV/blob/main/R/Lista4)
