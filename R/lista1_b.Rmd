@@ -120,7 +120,7 @@ grid.arrange(p8, p9,
 ```
 </center>
 
-
+Da mesma maneira, foram feito mais três gráficos com o mesmo conjunto de dados. Sendo o da esquerda com os pontos mais transparetes e a reta modificada, o da direita com uma linha representando o metodo **loess** e o do meio com as escritas como titulo, fonte, etc.
 
 <center>
 ```{r fig.height=8, echo=FALSE, warning=FALSE, message=FALSE}
@@ -128,6 +128,8 @@ grid.arrange(p10, p11, p13,
              ncol=3, nrow=1)
 ```
 </center>
+
+Por fim, foram feitos mais dois gráficos, sendo o da direita uma variação do gráfico que usou o metodo **loess**, porém com as cores representado os paises e o da direita é um grafico onde a cor dos pontos muda de intensidade de acordo com o **log da população**.
 
 <center>
 ```{r fig.height=12, echo=FALSE, warning=FALSE, message=FALSE}
