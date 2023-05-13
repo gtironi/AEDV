@@ -7,6 +7,8 @@ output:
     number_sections: yes
     highlight: tango
     theme: cerulean
+    fig_width: 16
+    fig_height: 10
     toc: yes
     toc_float:
       collapsed: yes
@@ -102,7 +104,7 @@ Para começar, resolvi copiar cada um dos gráficos literalmente conforme aprese
 O gráfico do meio a direita representa o mesmo gráfico, mas com a linha sendo forcada a representar uma reta. Por fim, nos gráficos inferiores o eixo x foi colocado em escala logarítmica, sendo que no gráfico a direta o valor do eixo está formatado em dólares.
 
 <center>
-```{r fig.height=8, fig.weigh=20, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, fig.height = 14, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p1, p2,
              p3, p4,
              p5, p6,
@@ -113,7 +115,7 @@ grid.arrange(p1, p2,
 Após isso, começamos a colorir os gráficos. O primeiro a esquerda, se trata de uma forma errada de tentar colorir, sendo dado o argumento **color = purple** dentro do parâmetro **mapping**. O gráfico a sua direita, por sua vez, apresenta a maneira correta, com o argumento **color** dentro de **geom_point**. Os gráficos inferiores, por sua vez, mostram como usar uma variável para colorir os pontos, sendo usado, nesse caso, a variável **continent**. A diferença entre eles é que o da direita preenche tanto a argumento **color**, quanto o **fill** conforme a variável em questão.
 
 <center>
-```{r fig.height=6, fig.weight=10, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p8, p9,
              p7, p12,
              ncol=2, nrow=2)
@@ -123,7 +125,7 @@ grid.arrange(p8, p9,
 Da mesma maneira, foram feito mais três gráficos com o mesmo conjunto de dados. Sendo o da esquerda com os pontos mais transparetes e a reta modificada, o da direita com uma linha representando o metodo **loess** e o do meio com as escritas como titulo, fonte, etc.
 
 <center>
-```{r fig.height=8, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p10, p11, p13,
              ncol=3, nrow=1)
 ```
@@ -132,8 +134,18 @@ grid.arrange(p10, p11, p13,
 Por fim, foram feitos mais dois gráficos, sendo o da direita uma variação do gráfico que usou o metodo **loess**, porém com as cores representado os paises e o da direita é um grafico onde a cor dos pontos muda de intensidade de acordo com o **log da população**.
 
 <center>
-```{r fig.height=12, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, fig.height=8, echo=FALSE, warning=FALSE, message=FALSE}
 grid.arrange(p14, p15,
              ncol=2, nrow=1)
 ```
 </center>
+
+# Modificando os gráficos
+
+<center>
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+```
+</center>
+
+p3,p5,p9,,p11,p12,p14,p15
