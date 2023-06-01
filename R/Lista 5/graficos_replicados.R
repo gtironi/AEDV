@@ -66,7 +66,53 @@ grafico_9 <- ggplot(data = gss_sm, mapping = aes(x = religion, fill = religion))
 grafico_9
 
 grafico_10 <- ggplot(data = gss_sm, mapping = aes(x = bigregion, fill = religion)) +
-  geom_bar +
+  geom_bar() +
   theme(legend.position="top")
 
-  grafico_10
+grafico_10
+
+grafico_11 <- ggplot(data = gss_sm, mapping = aes(x = bigregion, fill = religion)) +
+  geom_bar(position = "fill") +
+  theme(legend.position="top")
+
+grafico_11
+
+grafico_12 <- ggplot(data = gss_sm, mapping = aes(x = bigregion, fill = religion)) +
+  geom_bar(position = "dodge", aes(y = after_stat(prop), group = religion))
+
+grafico_12
+
+grafico_13 <- ggplot(data = gss_sm, mapping = aes(x = religion)) +
+  geom_bar(position = "dodge", aes(y = after_stat(prop), group = bigregion)) +
+  facet_wrap(~bigregion, ncol = 2) +
+  theme_bw()
+
+grafico_13
+
+grafico_14 <- ggplot(data = midwest, mapping = aes(x = area)) +
+  geom_histogram()
+
+grafico_14
+
+grafico_15 <- ggplot(data = midwest, mapping = aes(x = area)) +
+  geom_histogram(bins = 10)
+
+grafico_15
+
+oh_wi <- c("OH", "WI")
+
+grafico_16 <- ggplot(data = subset(midwest, state %in% oh_wi),
+              mapping = aes(x = percollege, fill = state)) +
+  geom_histogram(bins = 20, alpha = 0.4)
+
+grafico_16
+
+grafico_17 <- ggplot(data = midwest,  mapping = aes(x = area)) +
+  geom_density()
+
+grafico_17
+
+grafico_18 <- ggplot(data = midwest,  mapping = aes(x = area, fill = state, color = state)) +
+  geom_density(alpha = 0.3)
+
+grafico_18
