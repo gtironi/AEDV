@@ -206,3 +206,70 @@ grafico_28 <- ggplot(by_country, mapping = aes(x = donors_mean, y = reorder(coun
   labs(x = "Doadores", y = "")
 
 grafico_28
+
+grafico_29 <- ggplot(by_country, mapping = aes(x = reorder(country, donors_mean), y = donors_mean)) +
+  geom_pointrange(mapping = aes(ymin = donors_mean - donors_sd, ymax = donors_mean + donors_sd)) +
+  labs(x = "", y = "Doadores") +
+  coord_flip() +
+  theme(legend.position = "none")
+
+grafico_29
+
+p_title <- "Eleições Presidenciais: margens do colégio eleitoral e popular"
+p_subtitle <- "1824-2016"
+p_caption <- "Os dados de 2016 são provisórios."
+x_label <- "Porcentagem de votos populares do vencedor"
+y_label <- "Porcentagem de votos dos colégios eleitorais do vencedor"
+
+grafico_30 <- ggplot(elections_historic, aes(x = popular_pct, y = ec_pct, label = winner_label)) +
+  geom_hline(yintercept = 0.5, size = 1.4, color = "gray80") +
+  geom_vline(xintercept = 0.5, size = 1.4, color = "gray80") +
+  geom_point() +
+  geom_text_repel() +
+  scale_x_continuous(labels = scales::percent) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = x_label, y = y_label, title = p_title, subtitle = p_subtitle, caption = p_caption)
+
+grafico_30
+
+grafico_31 <- ggplot(by_country, mapping = aes(x = gdp_mean, y = health_mean)) +
+  geom_point() +
+  geom_text_repel(data = subset(by_country, gdp_mean > 25000), mapping = aes(label = country))
+
+grafico_31
+
+grafico_32 <- ggplot(by_country, mapping = aes(x = gdp_mean, y = health_mean)) +
+  geom_point() +
+  geom_text_repel(data = subset(by_country, gdp_mean > 25000 | health_mean < 1500 | country %in% "Belgium"), mapping = aes(label = country))
+
+grafico_32
+
+organdata$ind <- organdata$ccode %in% c("Ita", "Spa") & organdata$year > 1998
+
+grafico_33 <- ggplot(organdata, mapping = aes(x = roads, y = donors, color = ind)) +
+  geom_point() +
+  geom_text_repel(data = subset(organdata, ind), mapping = aes(label = ccode)) +
+  guides(label = FALSE, color = FALSE)
+
+grafico_33
+
+grafico_34 <- ggplot(organdata, mapping = aes(x = roads, y = donors)) +
+  geom_point() +
+  annotate(geom = "rect", xmin = 120, xmax = 160, ymin = 30, ymax = 35, fill = "red", alpha = 0.2) +
+  annotate(geom = "text", x = 162, y = 32.5, label = "Um número surpreendente \n grande de recuperações", hjust = 0)
+
+grafico_34
+
+grafico_35 <- ggplot(organdata, mapping = aes(x = roads, y = donors, color = world)) +
+  geom_point() +
+  scale_x_log10() +
+  scale_y_continuous(breaks = c(5, 15, 25), labels = c("Cinco", "Quinze", "Vinte e cinco"))
+
+grafico_35
+
+grafico_36 <- ggplot(organdata, mapping = aes(x = roads, y = donors, color = world)) +
+  geom_point() +
+  labs(x = "Mortes na Estrada", y = "Doadores") +
+  guides(color = FALSE)
+
+grafico_36
