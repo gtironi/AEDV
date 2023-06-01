@@ -7,6 +7,8 @@ library(ggrepel)
 
 theme_set(theme_classic())
 
+# --------------Cap 4----------------
+
 grafico_1 <- ggplot(gapminder, mapping = aes(x = year, y = gdpPercap)) +
   geom_line()
 
@@ -140,3 +142,67 @@ grafico_21 <- ggplot(data = oecd_sum, mapping = aes(x = year, y = diff, fill = h
   theme_bw()
 
 grafico_21
+
+# --------------Cap 5----------------
+
+rel_by_region <- gss_sm %>%
+  group_by(bigregion, religion) %>%
+  summarize(N = n()) %>%
+  mutate(freq = N/sum(N),
+         pct = round((freq*100), 0))
+
+grafico_22 <- ggplot(rel_by_region, aes(x = bigregion, y = pct, fill = religion)) +
+  geom_col(position = "dodge2") +
+  labs(x = "Região", y = "Porcentagem", fill = "Religião") +
+  theme(legend.position = "top")
+
+grafico_22
+
+grafico_23 <- ggplot(rel_by_region, aes(x = religion, y = pct, fill = religion)) +
+  geom_col(position = "dodge2") +
+  labs(x = NULL, y = "Porcentagem", fill = "Religião") +
+  guides(fill = FALSE) +
+  coord_flip() +
+  facet_grid(~bigregion)
+
+grafico_23
+
+grafico_24 <- ggplot(organdata, mapping = aes(x = year, y = donors)) +
+  geom_line(aes(group = country)) +
+  facet_wrap(~country)
+
+grafico_24
+
+grafico_25 <- ggplot(organdata, mapping = aes(x = reorder(country, donors, na.rm = TRUE), y = donors, fill = world)) +
+  geom_boxplot() +
+  labs(x = NULL) +
+  coord_flip() +
+  theme(legend.position = "top")
+
+grafico_25
+
+grafico_26 <- ggplot(organdata, mapping = aes(x = reorder(country, donors, na.rm = TRUE), y = donors, color = world)) +
+  geom_point(size = 3) +
+  labs(x = NULL) +
+  coord_flip() +
+  theme(legend.position = "top")
+
+grafico_26
+
+by_country <- organdata %>% group_by(consent_law, country) %>%
+  summarize_if(is.numeric, funs(mean, sd), na.rm = TRUE) %>%
+  ungroup
+
+grafico_27 <- ggplot(by_country, mapping = aes(x = donors_mean, y = reorder(country, donors_mean), color = consent_law)) +
+  geom_point(size = 3) +
+  labs(x = "Taxa de Captação de Doadores", y = "", color = "Consentimento") +
+  theme(legend.position = "top")
+
+grafico_27
+
+grafico_28 <- ggplot(by_country, mapping = aes(x = donors_mean, y = reorder(country, donors_mean))) +
+  geom_point(size = 3) +
+  facet_wrap(~consent_law, scales = "free_y", ncol = 2) +
+  labs(x = "Doadores", y = "")
+
+grafico_28
