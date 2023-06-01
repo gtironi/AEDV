@@ -116,3 +116,27 @@ grafico_18 <- ggplot(data = midwest,  mapping = aes(x = area, fill = state, colo
   geom_density(alpha = 0.3)
 
 grafico_18
+
+grafico_19 <- ggplot(data = subset(midwest, state %in% oh_wi), 
+              mapping = aes(x = area, fill = state, color = state)) +
+  geom_density(alpha = 0.3, mapping = aes(y = after_stat(scaled)))
+
+grafico_19
+
+grafico_20 <- ggplot(data = titanic, mapping = aes(x = fate, y = percent, fill = sex)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  theme(legend.position="top")
+
+grafico_20
+
+grafico_21 <- ggplot(data = oecd_sum, mapping = aes(x = year, y = diff, fill = hi_lo)) +
+  geom_col() +
+  guides(fill = FALSE) +
+  labs(x = NULL, 
+       y = "Diferença, em anos",
+       title = "Diferença na expectativa de Vida nos Estados Unidos",
+       subtitle = "Diferença entre a expectativa de vida média dos Estados Unidos e da OECD, 1960-2015",
+       caption = "Data: OECD, After a chart por Christopher Ingraham, Washington Post, 27 de Dezembro de 2017") +
+  theme_bw()
+
+grafico_21
