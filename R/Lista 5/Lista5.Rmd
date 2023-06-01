@@ -1,0 +1,40 @@
+---
+title: "Lista 5 - Capítulos 4 e 5"
+author: "Gustavo Tironi"
+date: '2023-06-01'
+output: 
+  html_document:
+    overflow: hidden
+    number_sections: yes
+    highlight: tango
+    theme: cerulean
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smmoth_scroll: no
+  pdf_document:
+    toc: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE,
+                      warning = FALSE,
+                      fig_width = 8,
+                      fig.height = 4)
+```
+
+``` {r library(), echo = FALSE}
+library(gapminder)
+library(ggplot2)
+library(socviz)
+library(tidyverse)
+library(dplyr)
+library(ggrepel)
+
+```
+
+## Setando um tema padrão
+
+Primeiramente, gostaria de destacar que irei apresentar os gráficos já modificados, pois não velo sentido em demonstrá-los idênticos ao livro. Então, primeiramente irei definir um tema global, cujo será aplicado em todos os gráficos, caso não seja indicado o contrário.
+
+

@@ -6,6 +6,8 @@ library(dplyr)
 library(ggrepel)
 
 theme_set(theme_classic())
+theme_update(legend.position="top")
+theme_update(plot.title = element_text(size = 12, face = "bold"))
 
 # --------------Cap 4----------------
 
@@ -57,7 +59,7 @@ grafico_7
 
 grafico_8 <- ggplot(data = gss_sm, aes(x = religion, color = religion)) +
   geom_bar()  +
-  theme(legend.position="top")
+  theme()
 
 grafico_8
 
@@ -69,13 +71,13 @@ grafico_9
 
 grafico_10 <- ggplot(data = gss_sm, mapping = aes(x = bigregion, fill = religion)) +
   geom_bar() +
-  theme(legend.position="top")
+  theme()
 
 grafico_10
 
 grafico_11 <- ggplot(data = gss_sm, mapping = aes(x = bigregion, fill = religion)) +
   geom_bar(position = "fill") +
-  theme(legend.position="top")
+  theme()
 
 grafico_11
 
@@ -127,7 +129,7 @@ grafico_19
 
 grafico_20 <- ggplot(data = titanic, mapping = aes(x = fate, y = percent, fill = sex)) +
   geom_bar(position = "dodge", stat = "identity") +
-  theme(legend.position="top")
+  theme()
 
 grafico_20
 
