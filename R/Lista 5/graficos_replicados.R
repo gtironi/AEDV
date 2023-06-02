@@ -9,10 +9,10 @@ theme_set(theme_classic())
 theme_update(legend.position="top")
 theme_update(plot.title = element_text(size = 12, face = "bold"))
 
-gapminder <- gapminder::gapminder %>% rename("Ano" = "Ano",
+gapminder <- gapminder::gapminder %>% rename("Ano" = "year",
  "País" = "country",
  "Continente" = "continent",
- "Populaçãoulação" = "pop",
+ "População" = "pop",
  "PIBpercapita" = "gdpPercap",
  "Expvida" = "lifeExp")
 
@@ -23,8 +23,16 @@ rename("Ano" = "year",
  "Região" = "bigregion",
  "Religião" = "religion")
   
-  
-midwest
+organdata <- socviz::organdata %>%
+rename("Ano" = "year",
+ "País" = "country",
+ "Doadores" = "donors",
+ "População" = "pop",
+ "Estradas" = "roads")
+
+midwest <- ggplot2::midwest %>%
+rename("Estado" = "state",
+ "Área" = "area")
 
 # --------------Cap 4----------------
 
@@ -57,89 +65,89 @@ grafico_4 <- ggplot(gapminder, mapping = aes(x = Ano, y = PIBpercapita)) +
 
 grafico_4
 
-grafico_5 <- ggplot(data = gss_sm, mapping = aes(x = Idade, y = childs)) +
+grafico_5 <- ggplot(data = gss_sm, mapping = aes(x = Idade, y = Crianças)) +
   geom_point(alpha=0.2) +
   geom_smooth() +
   facet_grid(sex~race)
   
 grafico_5
 
-grafico_6 <- ggplot(data = gss_sm, mapping = aes(x = bigregion)) +
+grafico_6 <- ggplot(data = gss_sm, mapping = aes(x = Região)) +
   geom_bar()
 
 grafico_6
 
-grafico_7 <- ggplot(data = gss_sm, mapping = aes(x = bigregion)) +
+grafico_7 <- ggplot(data = gss_sm, mapping = aes(x = Região)) +
   geom_bar(mapping = aes(y=after_stat(prop), group = 1))
 
 grafico_7
 
-grafico_8 <- ggplot(data = gss_sm, aes(x = religion, color = religion)) +
+grafico_8 <- ggplot(data = gss_sm, aes(x = Religião, color = Religião)) +
   geom_bar()  +
   theme()
 
 grafico_8
 
-grafico_9 <- ggplot(data = gss_sm, mapping = aes(x = religion, fill = religion)) +
+grafico_9 <- ggplot(data = gss_sm, mapping = aes(x = Religião, fill = Religião)) +
   geom_bar() +
   guides(fill = FALSE)
 
 grafico_9
 
-grafico_10 <- ggplot(data = gss_sm, mapping = aes(x = bigregion, fill = religion)) +
+grafico_10 <- ggplot(data = gss_sm, mapping = aes(x = Região, fill = Religião)) +
   geom_bar() +
   theme()
 
 grafico_10
 
-grafico_11 <- ggplot(data = gss_sm, mapping = aes(x = bigregion, fill = religion)) +
+grafico_11 <- ggplot(data = gss_sm, mapping = aes(x = Região, fill = Religião)) +
   geom_bar(position = "fill") +
   theme()
 
 grafico_11
 
-grafico_12 <- ggplot(data = gss_sm, mapping = aes(x = bigregion, fill = religion)) +
-  geom_bar(position = "dodge", aes(y = after_stat(prop), group = religion))
+grafico_12 <- ggplot(data = gss_sm, mapping = aes(x = Região, fill = Religião)) +
+  geom_bar(position = "dodge", aes(y = after_stat(prop), group = Religião))
 
 grafico_12
 
-grafico_13 <- ggplot(data = gss_sm, mapping = aes(x = religion)) +
-  geom_bar(position = "dodge", aes(y = after_stat(prop), group = bigregion)) +
-  facet_wrap(~bigregion, ncol = 2) +
+grafico_13 <- ggplot(data = gss_sm, mapping = aes(x = Religião)) +
+  geom_bar(position = "dodge", aes(y = after_stat(prop), group = Região)) +
+  facet_wrap(~Região, ncol = 2) +
   theme_bw()
 
 grafico_13
 
-grafico_14 <- ggplot(data = midwest, mapping = aes(x = area)) +
+grafico_14 <- ggplot(data = midwest, mapping = aes(x = Área)) +
   geom_histogram()
 
 grafico_14
 
-grafico_15 <- ggplot(data = midwest, mapping = aes(x = area)) +
+grafico_15 <- ggplot(data = midwest, mapping = aes(x = Área)) +
   geom_histogram(bins = 10)
 
 grafico_15
 
 oh_wi <- c("OH", "WI")
 
-grafico_16 <- ggplot(data = subset(midwest, state %in% oh_wi),
-              mapping = aes(x = percollege, fill = state)) +
+grafico_16 <- ggplot(data = subset(midwest, Estado %in% oh_wi),
+              mapping = aes(x = percollege, fill = Estado)) +
   geom_histogram(bins = 20, alpha = 0.4)
 
 grafico_16
 
-grafico_17 <- ggplot(data = midwest,  mapping = aes(x = area)) +
+grafico_17 <- ggplot(data = midwest,  mapping = aes(x = Área)) +
   geom_density()
 
 grafico_17
 
-grafico_18 <- ggplot(data = midwest,  mapping = aes(x = area, fill = state, color = state)) +
+grafico_18 <- ggplot(data = midwest,  mapping = aes(x = Área, fill = Estado, color = Estado)) +
   geom_density(alpha = 0.3)
 
 grafico_18
 
-grafico_19 <- ggplot(data = subset(midwest, state %in% oh_wi), 
-              mapping = aes(x = area, fill = state, color = state)) +
+grafico_19 <- ggplot(data = subset(midwest, Estado %in% oh_wi), 
+              mapping = aes(x = Área, fill = Estado, color = Estado)) +
   geom_density(alpha = 0.3, mapping = aes(y = after_stat(scaled)))
 
 grafico_19
@@ -149,7 +157,7 @@ grafico_20 <- ggplot(data = titanic, mapping = aes(x = fate, y = percent, fill =
 
 grafico_20
 
-grafico_21 <- ggplot(data = oecd_sum, mapping = aes(x = Ano, y = diff, fill = hi_lo)) +
+grafico_21 <- ggplot(data = oecd_sum, mapping = aes(x = year, y = diff, fill = hi_lo)) +
   geom_col() +
   guides(fill = FALSE) +
   labs(x = NULL, 
@@ -164,69 +172,65 @@ grafico_21
 # --------------Cap 5----------------
 
 rel_by_region <- gss_sm %>%
-  group_by(bigregion, religion) %>%
+  group_by(Região, Religião) %>%
   summarize(N = n()) %>%
   mutate(freq = N/sum(N),
          pct = round((freq*100), 0))
 
-grafico_22 <- ggplot(rel_by_region, aes(x = bigregion, y = pct, fill = religion)) +
+grafico_22 <- ggplot(rel_by_region, aes(x = Região, y = pct, fill = Religião)) +
   geom_col(position = "dodge2") +
-  labs(x = "Região", y = "Porcentagem", fill = "Religião") +
-  theme(legend.position = "top")
+  labs(x = "Região", y = "Porcentagem", fill = "Religião")
 
 grafico_22
 
-grafico_23 <- ggplot(rel_by_region, aes(x = religion, y = pct, fill = religion)) +
+grafico_23 <- ggplot(rel_by_region, aes(x = Religião, y = pct, fill = Religião)) +
   geom_col(position = "dodge2") +
   labs(x = NULL, y = "Porcentagem", fill = "Religião") +
   guides(fill = FALSE) +
   coord_flip() +
-  facet_grid(~bigregion)
+  facet_grid(~Região)
 
 grafico_23
 
-grafico_24 <- ggplot(organdata, mapping = aes(x = Ano, y = donors)) +
+grafico_24 <- ggplot(organdata, mapping = aes(x = Ano, y = Doadores)) +
   geom_line(aes(group = País)) +
   facet_wrap(~País)
 
 grafico_24
 
-grafico_25 <- ggplot(organdata, mapping = aes(x = reorder(País, donors, na.rm = TRUE), y = donors, fill = world)) +
+grafico_25 <- ggplot(organdata, mapping = aes(x = reorder(País, Doadores, na.rm = TRUE), y = Doadores, fill = world)) +
   geom_boxplot() +
   labs(x = NULL) +
-  coord_flip() +
-  theme(legend.position = "top")
+  coord_flip()
 
 grafico_25
 
-grafico_26 <- ggplot(organdata, mapping = aes(x = reorder(País, donors, na.rm = TRUE), y = donors, color = world)) +
+grafico_26 <- ggplot(organdata, mapping = aes(x = reorder(País, Doadores, na.rm = TRUE), y = Doadores, color = world)) +
   geom_point(size = 3) +
   labs(x = NULL) +
-  coord_flip() +
-  theme(legend.position = "top")
+  coord_flip()
 
 grafico_26
 
-by_País <- organdata %>% group_by(consent_law, País) %>%
+by_country <- organdata %>% group_by(consent_law, País) %>%
   summarize_if(is.numeric, funs(mean, sd), na.rm = TRUE) %>%
   ungroup
 
-grafico_27 <- ggplot(by_País, mapping = aes(x = donors_mean, y = reorder(País, donors_mean), color = consent_law)) +
+grafico_27 <- ggplot(by_country, mapping = aes(x = Doadores_mean, y = reorder(País, Doadores_mean), color = consent_law)) +
   geom_point(size = 3) +
-  labs(x = "Taxa de Captação de Doadores", y = "", color = "Consentimento") +
-  theme(legend.position = "top")
+  labs(x = "Taxa de Captação de Doadores", y = "", color = "Consentimento")
 
 grafico_27
 
-grafico_28 <- ggplot(by_País, mapping = aes(x = donors_mean, y = reorder(País, donors_mean))) +
+grafico_28 <- ggplot(by_country, mapping = aes(x = Doadores_mean, y = reorder(País, Doadores_mean))) +
   geom_point(size = 3) +
   facet_wrap(~consent_law, scales = "free_y", ncol = 2) +
   labs(x = "Doadores", y = "")
 
 grafico_28
 
-grafico_29 <- ggplot(by_País, mapping = aes(x = reorder(País, donors_mean), y = donors_mean)) +
-  geom_pointrange(mapping = aes(ymin = donors_mean - donors_sd, ymax = donors_mean + donors_sd)) +
+grafico_29 <- ggplot(by_country, mapping = aes(x = reorder(País, Doadores_mean), y = Doadores_mean)) +
+  geom_pointrange(mapping = aes(ymin = Doadores_mean - Doadores_sd, ymax = Doadores_mean + Doadores_sd)) +
   labs(x = "", y = "Doadores") +
   coord_flip() +
   theme(legend.position = "none")
@@ -239,7 +243,7 @@ p_caption <- "Os dados de 2016 são provisórios."
 x_label <- "Porcentagem de votos Populaçãoulares do vencedor"
 y_label <- "Porcentagem de votos dos colégios eleitorais do vencedor"
 
-grafico_30 <- ggplot(elections_historic, aes(x = Populaçãoular_pct, y = ec_pct, label = winner_label)) +
+grafico_30 <- ggplot(elections_historic, aes(x = popular_pct, y = ec_pct, label = winner_label)) +
   geom_hline(yintercept = 0.5, size = 1.4, color = "gray80") +
   geom_vline(xintercept = 0.5, size = 1.4, color = "gray80") +
   geom_point() +
@@ -250,42 +254,42 @@ grafico_30 <- ggplot(elections_historic, aes(x = Populaçãoular_pct, y = ec_pct
 
 grafico_30
 
-grafico_31 <- ggplot(by_País, mapping = aes(x = gdp_mean, y = health_mean)) +
+grafico_31 <- ggplot(by_country, mapping = aes(x = gdp_mean, y = health_mean)) +
   geom_point() +
-  geom_text_repel(data = subset(by_País, gdp_mean > 25000), mapping = aes(label = País))
+  geom_text_repel(data = subset(by_country, gdp_mean > 25000), mapping = aes(label = País))
 
 grafico_31
 
-grafico_32 <- ggplot(by_País, mapping = aes(x = gdp_mean, y = health_mean)) +
+grafico_32 <- ggplot(by_country, mapping = aes(x = gdp_mean, y = health_mean)) +
   geom_point() +
-  geom_text_repel(data = subset(by_País, gdp_mean > 25000 | health_mean < 1500 | País %in% "Belgium"), mapping = aes(label = País))
+  geom_text_repel(data = subset(by_country, gdp_mean > 25000 | health_mean < 1500 | País %in% "Belgium"), mapping = aes(label = País))
 
 grafico_32
 
 organdata$ind <- organdata$ccode %in% c("Ita", "Spa") & organdata$Ano > 1998
 
-grafico_33 <- ggplot(organdata, mapping = aes(x = roads, y = donors, color = ind)) +
+grafico_33 <- ggplot(organdata, mapping = aes(x = Estradas, y = Doadores, color = ind)) +
   geom_point() +
   geom_text_repel(data = subset(organdata, ind), mapping = aes(label = ccode)) +
   guides(label = FALSE, color = FALSE)
 
 grafico_33
 
-grafico_34 <- ggplot(organdata, mapping = aes(x = roads, y = donors)) +
+grafico_34 <- ggplot(organdata, mapping = aes(x = Estradas, y = Doadores)) +
   geom_point() +
   annotate(geom = "rect", xmin = 120, xmax = 160, ymin = 30, ymax = 35, fill = "red", alpha = 0.2) +
   annotate(geom = "text", x = 162, y = 32.5, label = "Um número surpreendente \n grande de recuperações", hjust = 0)
 
 grafico_34
 
-grafico_35 <- ggplot(organdata, mapping = aes(x = roads, y = donors, color = world)) +
+grafico_35 <- ggplot(organdata, mapping = aes(x = Estradas, y = Doadores, color = world)) +
   geom_point() +
   scale_x_log10() +
   scale_y_continuous(breaks = c(5, 15, 25), labels = c("Cinco", "Quinze", "Vinte e cinco"))
 
 grafico_35
 
-grafico_36 <- ggplot(organdata, mapping = aes(x = roads, y = donors, color = world)) +
+grafico_36 <- ggplot(organdata, mapping = aes(x = Estradas, y = Doadores, color = world)) +
   geom_point() +
   labs(x = "Mortes na Estrada", y = "Doadores") +
   guides(color = FALSE)

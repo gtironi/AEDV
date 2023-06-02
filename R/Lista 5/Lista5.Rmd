@@ -18,7 +18,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message = FALSE,
-                      warning = FALSE,
+                      warning = TRUE,
                       fig_width = 8,
                       fig.height = 4,
                       fig.align = 'center')
@@ -31,7 +31,8 @@ library(socviz)
 library(tidyverse)
 library(dplyr)
 library(ggrepel)
-
+library(gridExtra)
+library(grid)
 ```
 
 # Setando um tema padrão
@@ -48,15 +49,308 @@ theme_update(plot.title = element_text(size = 12, face = "bold"))
 
 Aqui, não irei me alongar muito nas explicações, e focarei masi em apresentar os gráficos, pontuando apenas o que eu achar relevante.
 
-Portanto, começarei a apesentar os gráficos construídos
+Inicialmente, para evitar a repetição de **labs** desnecessários, resolvi alterar o nome das variáveis mais frequentes dos *databases*, para assim, os rotulos dos eixos aparecerem de forma correta, sem necessidade de usar o label. Para isso, user o comando **rename** do *dplyr*.
 
 ```{r}
-ggplot(gapminder, mapping = aes(x = year, y = gdpPercap)) +
+gapminder <- gapminder::gapminder %>% rename("Ano" = "year",
+ "País" = "country",
+ "Continente" = "continent",
+ "População" = "pop",
+ "PIBpercapita" = "gdpPercap",
+ "Expvida" = "lifeExp")
+
+gss_sm <- socviz::gss_sm %>%
+rename("Ano" = "year",
+ "Idade" = "age",
+ "Crianças" = "childs",
+ "Região" = "bigregion",
+ "Religião" = "religion")
+  
+organdata <- socviz::organdata %>%
+rename("Ano" = "year",
+ "País" = "country",
+ "Doadores" = "donors",
+ "População" = "pop",
+ "Estradas" = "roads")
+
+midwest <- ggplot2::midwest %>%
+rename("Estado" = "state",
+ "Área" = "area")
+```
+
+Com isso feito, começarei a apesentar os gráficos construídos
+
+```{r}
+ggplot(gapminder, mapping = aes(x = Ano, y = PIBpercapita)) +
 geom_line()
 ```
 
 
 ```{r}
-ggplot(gapminder, mapping = aes(x = year, y = gdpPercap)) +
-geom_line(aes(group=country))
+ggplot(gapminder, mapping = aes(x = Ano, y = PIBpercapita)) +
+geom_line(aes(group=País))
+```
+
+```{r, fig.height = 6}
+ggplot(gapminder, mapping = aes(x = Ano, y = PIBpercapita)) +
+geom_line(aes(group=País)) +
+facet_wrap(~Continente) +
+theme_bw()
+```
+
+```{r, fig.width = 13, fig.height = 8}
+ggplot(gapminder, mapping = aes(x = Ano, y = PIBpercapita)) +
+geom_line(color = "gray70", aes(group=País)) +
+geom_smooth(size=1.1, method="loess", se=FALSE) +
+scale_y_log10(labels=scales::dollar) +
+facet_wrap(~ Continente, ncol=3) +
+labs(x = "Ano",
+     y = "PIB per capita",
+     title = "PIB per capita nos cinco Continentes") +
+theme_bw() +
+theme(panel.spacing = unit(2, "lines"))
+```
+
+```{r}
+ggplot(data = gss_sm, mapping = aes(x = Idade, y = Crianças)) +
+geom_point(alpha=0.2) +
+geom_smooth() +
+facet_grid(sex~race)
+```
+
+```{r, fig.width = 13, fig.height = 6}
+p1 <- ggplot(data = gss_sm, mapping = aes(x = Região)) +
+geom_bar()
+
+p2 <- ggplot(data = gss_sm, mapping = aes(x = Região)) +
+geom_bar(mapping = aes(y=after_stat(prop), group = 1))
+
+grid.arrange(p1, p2,
+             ncol=2, nrow=1)
+```
+
+```{r, fig.width = 13, fig.height = 6}
+p1 <- ggplot(data = gss_sm, aes(x = Religião, color = Religião)) +
+geom_bar()  +
+theme()
+
+p2 <- ggplot(data = gss_sm, mapping = aes(x = Religião, fill = Religião)) +
+geom_bar() +
+guides(fill = FALSE)
+
+grid.arrange(p1, p2,
+             ncol=2, nrow=1)
+```
+
+```{r, fig.width = 13, fig.height = 6}
+p1 <- ggplot(data = gss_sm, mapping = aes(x = Região, fill = Religião)) +
+geom_bar() +
+theme()
+
+p2 <- ggplot(data = gss_sm, mapping = aes(x = Região, fill = Religião)) +
+geom_bar(position = "fill") +
+theme()
+
+grid.arrange(p1, p2,
+             ncol=2, nrow=1)
+```
+
+```{r}
+ggplot(data = gss_sm, mapping = aes(x = Região, fill = Religião)) +
+geom_bar(position = "dodge", aes(y = after_stat(prop), group = Religião))
+```
+
+```{r}
+ggplot(data = gss_sm, mapping = aes(x = Religião)) +
+geom_bar(position = "dodge", aes(y = after_stat(prop), group = Região)) +
+facet_wrap(~Região, ncol = 2) +
+theme_bw()
+```
+
+```{r}
+ggplot(data = midwest, mapping = aes(x = Área)) +
+geom_histogram()
+```
+
+```{r}
+ggplot(data = midwest, mapping = aes(x = Área)) +
+geom_histogram(bins = 10)
+```
+
+```{r}
+oh_wi <- c("OH", "WI")
+
+ggplot(data = subset(midwest, Estado %in% oh_wi), mapping = aes(x = percollege, fill = Estado)) +
+geom_histogram(bins = 20, alpha = 0.4)
+```
+
+```{r}
+ggplot(data = midwest,  mapping = aes(x = Área)) +
+geom_density()
+```
+
+```{r}
+ggplot(data = midwest,  mapping = aes(x = Área, fill = Estado, color = Estado)) +
+geom_density(alpha = 0.3)
+```
+
+```{r}
+ggplot(data = subset(midwest, Estado %in% oh_wi), mapping = aes(x = Área, fill = Estado, color = Estado)) +
+geom_density(alpha = 0.3, mapping = aes(y = after_stat(scaled)))
+```
+
+```{r}
+ggplot(data = titanic, mapping = aes(x = fate, y = percent, fill = sex)) +
+geom_bar(position = "dodge", stat = "identity")
+```
+
+```{r}
+ggplot(data = oecd_sum, mapping = aes(x = year, y = diff, fill = hi_lo)) +
+geom_col() +
+guides(fill = FALSE) +
+labs(x = NULL, 
+       y = "Diferença, em anos",
+       title = "Diferença na expectativa de Vida nos Estados Unidos",
+       subtitle = "Diferença entre a expectativa de vida média dos Estados Unidos e da OECD, 1960-2015",
+       caption = "Data: OECD, After a chart por Christopher Ingraham, Washington Post, 27 de Dezembro de 2017") +
+theme_bw()
+```
+
+# Gráficos do capítulo 5
+
+Inicialmente, iremos criar um novo **dataframe** a partir do *gss_sm*. Para isso, usamos as funções group_by, summarize e mutate, conforme pede o livro.
+
+```{r}
+rel_by_region <- gss_sm %>%
+  group_by(Região, Religião) %>%
+  summarize(N = n()) %>%
+  mutate(freq = N/sum(N),
+         pct = round((freq*100), 0))
+```
+
+Com o dataframe **rel_by_region** criado, podemos começar a plotar os gráficos.
+
+```{r}
+ggplot(rel_by_region, aes(x = Região, y = pct, fill = Religião)) +
+geom_col(position = "dodge2") +
+labs(y = "Porcentagem")
+```
+
+```{r}
+ggplot(rel_by_region, aes(x = Religião, y = pct, fill = Religião)) +
+geom_col(position = "dodge2") +
+labs(x = NULL, y = "Porcentagem") +
+guides(fill = FALSE) +
+coord_flip() +
+facet_grid(~Região)
+```
+
+```{r}
+ggplot(organdata, mapping = aes(x = Ano, y = Doadores)) +
+geom_line(aes(group = País)) +
+facet_wrap(~País)
+```
+
+```{r}
+ggplot(organdata, mapping = aes(x = reorder(País, Doadores, na.rm = TRUE), y = Doadores, fill = world)) +
+geom_boxplot() +
+labs(x = NULL) +
+coord_flip()
+```
+
+```{r}
+ggplot(organdata, mapping = aes(x = reorder(País, Doadores, na.rm = TRUE), y = Doadores, color = world)) +
+geom_point(size = 3) +
+labs(x = NULL) +
+coord_flip()
+```
+
+Aqui, criamos outro **dataframe**, dessa vez, a partir do *organdata*.
+
+```{r}
+by_country <- organdata %>% group_by(consent_law, País) %>%
+  summarize_if(is.numeric, funs(mean, sd), na.rm = TRUE) %>%
+  ungroup
+```
+
+```{r}
+ggplot(by_country, mapping = aes(x = Doadores_mean, y = reorder(País, Doadores_mean), color = consent_law)) +
+geom_point(size = 3) +
+labs(x = "Taxa de Captação de Doadores", y = "", color = "Consentimento")
+```
+
+```{r}
+ggplot(by_country, mapping = aes(x = Doadores_mean, y = reorder(País, Doadores_mean))) +
+geom_point(size = 3) +
+facet_wrap(~consent_law, scales = "free_y", ncol = 2) +
+labs(x = "Doadores", y = "")
+```
+
+```{r}
+ggplot(by_country, mapping = aes(x = reorder(País, Doadores_mean), y = Doadores_mean)) +
+geom_pointrange(mapping = aes(ymin = Doadores_mean - Doadores_sd, ymax = Doadores_mean + Doadores_sd)) +
+labs(x = "", y = "Doadores") +
+coord_flip() +
+theme(legend.position = "none")
+```
+
+```{r}
+p_title <- "Eleições Presidenciais: margens do colégio eleitoral e Populaçãoular"
+p_subtitle <- "1824-2016"
+p_caption <- "Os dados de 2016 são provisórios."
+x_label <- "Porcentagem de votos Populaçãoulares do vencedor"
+y_label <- "Porcentagem de votos dos colégios eleitorais do vencedor"
+```
+
+```{r}
+ggplot(elections_historic, aes(x = popular_pct, y = ec_pct, label = winner_label)) +
+geom_hline(yintercept = 0.5, size = 1.4, color = "gray80") +
+geom_vline(xintercept = 0.5, size = 1.4, color = "gray80") +
+geom_point(size =2) +
+geom_text_repel() +
+scale_x_continuous(labels = scales::percent) +
+scale_y_continuous(labels = scales::percent) +
+labs(x = x_label, y = y_label, title = p_title, subtitle = p_subtitle, caption = p_caption)
+```
+
+```{r}
+ggplot(by_country, mapping = aes(x = gdp_mean, y = health_mean)) +
+geom_point(size =2) +
+geom_text_repel(data = subset(by_country, gdp_mean > 25000), mapping = aes(label = País))
+```
+
+```{r}
+ggplot(by_country, mapping = aes(x = gdp_mean, y = health_mean)) +
+geom_point(size =2) +
+geom_text_repel(data = subset(by_country, gdp_mean > 25000 | health_mean < 1500 | País %in% "Belgium"), mapping = aes(label = País))
+```
+
+```{r}
+organdata$ind <- organdata$ccode %in% c("Ita", "Spa") & organdata$Ano > 1998
+
+ggplot(organdata, mapping = aes(x = Estradas, y = Doadores, color = ind)) +
+geom_point(size =2) +
+geom_text_repel(data = subset(organdata, ind), mapping = aes(label = ccode)) +
+guides(label = FALSE, color = FALSE)
+```
+
+```{r}
+ggplot(organdata, mapping = aes(x = Estradas, y = Doadores)) +
+geom_point(size =2) +
+annotate(geom = "rect", xmin = 120, xmax = 160, ymin = 30, ymax = 35, fill = "red", alpha = 0.2) +
+annotate(geom = "text", x = 162, y = 32.5, label = "Um número surpreendente \n grande de recuperações", hjust = 0)
+```
+
+```{r}
+ggplot(organdata, mapping = aes(x = Estradas, y = Doadores, color = world)) +
+geom_point(size =2) +
+scale_x_log10() +
+scale_y_continuous(breaks = c(5, 15, 25), labels = c("Cinco", "Quinze", "Vinte e cinco"))
+```
+
+```{r}
+ggplot(organdata, mapping = aes(x = Estradas, y = Doadores, color = world)) +
+geom_point(size =2) +
+labs(x = "Mortes na Estrada", y = "Doadores") +
+guides(color = FALSE)
 ```
