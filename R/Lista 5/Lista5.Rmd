@@ -20,10 +20,11 @@ output:
 knitr::opts_chunk$set(message = FALSE,
                       warning = FALSE,
                       fig_width = 8,
-                      fig.height = 4)
+                      fig.height = 4,
+                      fig.align = 'center')
 ```
 
-``` {r library(), echo = FALSE}
+``` {r library, echo = FALSE}
 library(gapminder)
 library(ggplot2)
 library(socviz)
@@ -33,8 +34,29 @@ library(ggrepel)
 
 ```
 
-## Setando um tema padrão
+# Setando um tema padrão
 
-Primeiramente, gostaria de destacar que irei apresentar os gráficos já modificados, pois não velo sentido em demonstrá-los idênticos ao livro. Então, primeiramente irei definir um tema global, cujo será aplicado em todos os gráficos, caso não seja indicado o contrário.
+Primeiramente, gostaria de destacar que irei apresentar os gráficos já modificados, pois não velo sentido em demonstrá-los idênticos ao livro. Então, primeiramente irei definir um tema global, cujo será aplicado em todos os gráficos, caso não seja indicado o contrário. 
+
+``` {r theme}
+theme_set(theme_classic())
+theme_update(legend.position="top")
+theme_update(plot.title = element_text(size = 12, face = "bold"))
+```
+
+# Gráficos do capítulo 4
+
+Aqui, não irei me alongar muito nas explicações, e focarei masi em apresentar os gráficos, pontuando apenas o que eu achar relevante.
+
+Portanto, começarei a apesentar os gráficos construídos
+
+```{r}
+ggplot(gapminder, mapping = aes(x = year, y = gdpPercap)) +
+geom_line()
+```
 
 
+```{r}
+ggplot(gapminder, mapping = aes(x = year, y = gdpPercap)) +
+geom_line(aes(group=country))
+```
