@@ -18,7 +18,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message = FALSE,
-                      warning = TRUE,
+                      warning = FALSE,
                       fig_width = 8,
                       fig.height = 4,
                       fig.align = 'center')
@@ -47,9 +47,9 @@ theme_update(plot.title = element_text(size = 12, face = "bold"))
 
 # Gráficos do capítulo 4
 
-Aqui, não irei me alongar muito nas explicações, e focarei masi em apresentar os gráficos, pontuando apenas o que eu achar relevante.
+Aqui, não irei me alongar muito nas explicações, e focarei mais em apresentar os gráficos, pontuando apenas o que eu achar relevante.
 
-Inicialmente, para evitar a repetição de **labs** desnecessários, resolvi alterar o nome das variáveis mais frequentes dos *databases*, para assim, os rotulos dos eixos aparecerem de forma correta, sem necessidade de usar o label. Para isso, user o comando **rename** do *dplyr*.
+Inicialmente, para evitar a repetição de **labs** desnecessários, resolvi alterar o nome das variáveis mais frequentes das *databases*, para assim, os rótulos dos eixos aparecerem de forma correta, sem necessidade de usar o labs(). Para isso, user o comando **rename** do *dplyr*.
 
 ```{r}
 gapminder <- gapminder::gapminder %>% rename("Ano" = "year",
@@ -78,52 +78,55 @@ rename("Estado" = "state",
  "Área" = "area")
 ```
 
-Com isso feito, começarei a apesentar os gráficos construídos
+Com isso feito, começarei a apesentar os gráficos construídos.
 
 ```{r}
 ggplot(gapminder, mapping = aes(x = Ano, y = PIBpercapita)) +
-geom_line()
+geom_line(size = 2) +
+labs(title = "PIB per capita, por ano")
 ```
 
-
 ```{r}
 ggplot(gapminder, mapping = aes(x = Ano, y = PIBpercapita)) +
-geom_line(aes(group=País))
+geom_line(aes(group=País), color = "#154666", size =0.5) +
+scale_y_continuous(limits = c(NA, 50000))
 ```
 
 ```{r, fig.height = 6}
 ggplot(gapminder, mapping = aes(x = Ano, y = PIBpercapita)) +
 geom_line(aes(group=País)) +
-facet_wrap(~Continente) +
+facet_wrap(~Continente, scales = "free") +
 theme_bw()
 ```
 
 ```{r, fig.width = 13, fig.height = 8}
 ggplot(gapminder, mapping = aes(x = Ano, y = PIBpercapita)) +
 geom_line(color = "gray70", aes(group=País)) +
-geom_smooth(size=1.1, method="loess", se=FALSE) +
+geom_smooth(size=1.1, method="loess", se=FALSE, color = "#03A64A") +
 scale_y_log10(labels=scales::dollar) +
-facet_wrap(~ Continente, ncol=3) +
+facet_wrap(~ Continente, ncol=3, scale = "free") +
 labs(x = "Ano",
      y = "PIB per capita",
-     title = "PIB per capita nos cinco Continentes") +
+     title = "PIB per capita nos cinco continentes") +
 theme_bw() +
-theme(panel.spacing = unit(2, "lines"))
+theme(panel.spacing = unit(2, "lines"), plot.title = element_text(size = 18, face = "bold"))
 ```
 
 ```{r}
 ggplot(data = gss_sm, mapping = aes(x = Idade, y = Crianças)) +
 geom_point(alpha=0.2) +
-geom_smooth() +
+geom_smooth(color = "#502000") +
 facet_grid(sex~race)
 ```
 
 ```{r, fig.width = 13, fig.height = 6}
 p1 <- ggplot(data = gss_sm, mapping = aes(x = Região)) +
-geom_bar()
+geom_bar(fill = "#9C3E00") +
+labs(y = "Contagem")
 
 p2 <- ggplot(data = gss_sm, mapping = aes(x = Região)) +
-geom_bar(mapping = aes(y=after_stat(prop), group = 1))
+geom_bar(mapping = aes(y=after_stat(prop), group = 1), fill = "#502000") +
+labs(y = "Proporção")
 
 grid.arrange(p1, p2,
              ncol=2, nrow=1)
@@ -132,11 +135,13 @@ grid.arrange(p1, p2,
 ```{r, fig.width = 13, fig.height = 6}
 p1 <- ggplot(data = gss_sm, aes(x = Religião, color = Religião)) +
 geom_bar()  +
-theme()
+theme() +
+labs(y = "Contagem")
 
 p2 <- ggplot(data = gss_sm, mapping = aes(x = Religião, fill = Religião)) +
 geom_bar() +
-guides(fill = FALSE)
+guides(fill = FALSE) +
+labs(y = "Contagem")
 
 grid.arrange(p1, p2,
              ncol=2, nrow=1)
@@ -145,11 +150,13 @@ grid.arrange(p1, p2,
 ```{r, fig.width = 13, fig.height = 6}
 p1 <- ggplot(data = gss_sm, mapping = aes(x = Região, fill = Religião)) +
 geom_bar() +
-theme()
+theme() +
+labs(y = "Contagem")
 
 p2 <- ggplot(data = gss_sm, mapping = aes(x = Região, fill = Religião)) +
 geom_bar(position = "fill") +
-theme()
+theme() +
+labs(y = "Contagem")
 
 grid.arrange(p1, p2,
              ncol=2, nrow=1)
@@ -157,41 +164,48 @@ grid.arrange(p1, p2,
 
 ```{r}
 ggplot(data = gss_sm, mapping = aes(x = Região, fill = Religião)) +
-geom_bar(position = "dodge", aes(y = after_stat(prop), group = Religião))
+geom_bar(position = "dodge", aes(y = after_stat(prop), group = Religião)) +
+labs(y = "Proporção")
 ```
 
 ```{r}
 ggplot(data = gss_sm, mapping = aes(x = Religião)) +
 geom_bar(position = "dodge", aes(y = after_stat(prop), group = Região)) +
 facet_wrap(~Região, ncol = 2) +
-theme_bw()
+theme_bw() +
+labs(y = "Proporção")
 ```
 
 ```{r}
 ggplot(data = midwest, mapping = aes(x = Área)) +
-geom_histogram()
+geom_histogram() +
+labs(y = "Contagem")
 ```
 
 ```{r}
 ggplot(data = midwest, mapping = aes(x = Área)) +
-geom_histogram(bins = 10)
+geom_histogram(bins = 10) +
+labs(y = "Contagem")
 ```
 
 ```{r}
 oh_wi <- c("OH", "WI")
 
 ggplot(data = subset(midwest, Estado %in% oh_wi), mapping = aes(x = percollege, fill = Estado)) +
-geom_histogram(bins = 20, alpha = 0.4)
+geom_histogram(bins = 20, alpha = 0.4)  +
+labs(y = "Contagem", x = "Por Universidade")
 ```
 
 ```{r}
 ggplot(data = midwest,  mapping = aes(x = Área)) +
-geom_density()
+geom_density() +
+labs(y = "Densidade")
 ```
 
 ```{r}
 ggplot(data = midwest,  mapping = aes(x = Área, fill = Estado, color = Estado)) +
-geom_density(alpha = 0.3)
+geom_density(alpha = 0.3) +
+labs(y = "Densidade")
 ```
 
 ```{r}
@@ -201,7 +215,8 @@ geom_density(alpha = 0.3, mapping = aes(y = after_stat(scaled)))
 
 ```{r}
 ggplot(data = titanic, mapping = aes(x = fate, y = percent, fill = sex)) +
-geom_bar(position = "dodge", stat = "identity")
+geom_bar(position = "dodge", stat = "identity") +
+labs(y = "Porcentagem", x = "Condição", color = "Sexo")
 ```
 
 ```{r}
@@ -209,11 +224,12 @@ ggplot(data = oecd_sum, mapping = aes(x = year, y = diff, fill = hi_lo)) +
 geom_col() +
 guides(fill = FALSE) +
 labs(x = NULL, 
-       y = "Diferença, em anos",
+       y = "Diferença, por ano",
        title = "Diferença na expectativa de Vida nos Estados Unidos",
        subtitle = "Diferença entre a expectativa de vida média dos Estados Unidos e da OECD, 1960-2015",
        caption = "Data: OECD, After a chart por Christopher Ingraham, Washington Post, 27 de Dezembro de 2017") +
-theme_bw()
+theme_bw() +
+theme(plot.title = element_text(size = 12, face = "bold"))
 ```
 
 # Gráficos do capítulo 5
@@ -236,7 +252,7 @@ geom_col(position = "dodge2") +
 labs(y = "Porcentagem")
 ```
 
-```{r}
+```{r, fig.width = 14}
 ggplot(rel_by_region, aes(x = Religião, y = pct, fill = Religião)) +
 geom_col(position = "dodge2") +
 labs(x = NULL, y = "Porcentagem") +
@@ -245,23 +261,23 @@ coord_flip() +
 facet_grid(~Região)
 ```
 
-```{r}
+```{r, fig.height=10}
 ggplot(organdata, mapping = aes(x = Ano, y = Doadores)) +
 geom_line(aes(group = País)) +
-facet_wrap(~País)
+facet_wrap(~País, ncol = 3)
 ```
 
 ```{r}
 ggplot(organdata, mapping = aes(x = reorder(País, Doadores, na.rm = TRUE), y = Doadores, fill = world)) +
 geom_boxplot() +
-labs(x = NULL) +
+labs(x = NULL, color = "Mundo") +
 coord_flip()
 ```
 
 ```{r}
 ggplot(organdata, mapping = aes(x = reorder(País, Doadores, na.rm = TRUE), y = Doadores, color = world)) +
 geom_point(size = 3) +
-labs(x = NULL) +
+labs(x = NULL, color = "Mundo") +
 coord_flip()
 ```
 
@@ -294,6 +310,8 @@ coord_flip() +
 theme(legend.position = "none")
 ```
 
+Aqui, usaremos outro métodos para dar nomes no gráfico. Inicialmente, definimos variáveis com os textos que gostaríamos que aparecessem.
+
 ```{r}
 p_title <- "Eleições Presidenciais: margens do colégio eleitoral e Populaçãoular"
 p_subtitle <- "1824-2016"
@@ -302,12 +320,14 @@ x_label <- "Porcentagem de votos Populaçãoulares do vencedor"
 y_label <- "Porcentagem de votos dos colégios eleitorais do vencedor"
 ```
 
+Agora, podemos referenciar as variáveis nos **labs**. Isso é importante, pois assim podemos criar gráficos com legendas alteráveis.
+
 ```{r}
 ggplot(elections_historic, aes(x = popular_pct, y = ec_pct, label = winner_label)) +
 geom_hline(yintercept = 0.5, size = 1.4, color = "gray80") +
 geom_vline(xintercept = 0.5, size = 1.4, color = "gray80") +
 geom_point(size =2) +
-geom_text_repel() +
+geom_text_repel(max.overlaps = 5) +
 scale_x_continuous(labels = scales::percent) +
 scale_y_continuous(labels = scales::percent) +
 labs(x = x_label, y = y_label, title = p_title, subtitle = p_subtitle, caption = p_caption)
@@ -316,13 +336,15 @@ labs(x = x_label, y = y_label, title = p_title, subtitle = p_subtitle, caption =
 ```{r}
 ggplot(by_country, mapping = aes(x = gdp_mean, y = health_mean)) +
 geom_point(size =2) +
-geom_text_repel(data = subset(by_country, gdp_mean > 25000), mapping = aes(label = País))
+geom_text_repel(data = subset(by_country, gdp_mean > 25000), mapping = aes(label = País)) +
+labs(x = "PIB médio", y = "Saúde média")
 ```
 
 ```{r}
 ggplot(by_country, mapping = aes(x = gdp_mean, y = health_mean)) +
 geom_point(size =2) +
-geom_text_repel(data = subset(by_country, gdp_mean > 25000 | health_mean < 1500 | País %in% "Belgium"), mapping = aes(label = País))
+geom_text_repel(data = subset(by_country, gdp_mean > 25000 | health_mean < 1500 | País %in% "Belgium"), mapping = aes(label = País)) +
+labs(x = "PIB médio", y = "Saúde média")
 ```
 
 ```{r}
@@ -345,7 +367,8 @@ annotate(geom = "text", x = 162, y = 32.5, label = "Um número surpreendente \n 
 ggplot(organdata, mapping = aes(x = Estradas, y = Doadores, color = world)) +
 geom_point(size =2) +
 scale_x_log10() +
-scale_y_continuous(breaks = c(5, 15, 25), labels = c("Cinco", "Quinze", "Vinte e cinco"))
+scale_y_continuous(breaks = c(5, 15, 25), labels = c("Cinco", "Quinze", "Vinte e cinco")) +
+labs(color = "Mundo")
 ```
 
 ```{r}
