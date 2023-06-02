@@ -173,18 +173,21 @@ ggplot(data = gss_sm, mapping = aes(x = Religião)) +
 geom_bar(position = "dodge", aes(y = after_stat(prop), group = Região)) +
 facet_wrap(~Região, ncol = 2) +
 theme_bw() +
-labs(y = "Proporção")
+labs(y = "Proporção") +
+ggtitle("Proporção da religião, por região") +
+theme(plot.title = element_text(size = 12, face = "bold"))
+
 ```
 
 ```{r}
 ggplot(data = midwest, mapping = aes(x = Área)) +
-geom_histogram() +
+geom_histogram(fill = "#00939C") +
 labs(y = "Contagem")
 ```
 
 ```{r}
 ggplot(data = midwest, mapping = aes(x = Área)) +
-geom_histogram(bins = 10) +
+geom_histogram(bins = 10, fill ="#004C50") +
 labs(y = "Contagem")
 ```
 
@@ -198,7 +201,7 @@ labs(y = "Contagem", x = "Por Universidade")
 
 ```{r}
 ggplot(data = midwest,  mapping = aes(x = Área)) +
-geom_density() +
+geom_density(size = 2) +
 labs(y = "Densidade")
 ```
 
@@ -216,7 +219,7 @@ geom_density(alpha = 0.3, mapping = aes(y = after_stat(scaled)))
 ```{r}
 ggplot(data = titanic, mapping = aes(x = fate, y = percent, fill = sex)) +
 geom_bar(position = "dodge", stat = "identity") +
-labs(y = "Porcentagem", x = "Condição", color = "Sexo")
+labs(y = "Porcentagem", x = "Condição", fill = "Sexo")
 ```
 
 ```{r}
@@ -249,7 +252,8 @@ Com o dataframe **rel_by_region** criado, podemos começar a plotar os gráficos
 ```{r}
 ggplot(rel_by_region, aes(x = Região, y = pct, fill = Religião)) +
 geom_col(position = "dodge2") +
-labs(y = "Porcentagem")
+labs(y = "Porcentagem") +
+ggtitle("Dominancia de cada religião, por região")
 ```
 
 ```{r, fig.width = 14}
@@ -263,14 +267,14 @@ facet_grid(~Região)
 
 ```{r, fig.height=10}
 ggplot(organdata, mapping = aes(x = Ano, y = Doadores)) +
-geom_line(aes(group = País)) +
-facet_wrap(~País, ncol = 3)
+geom_line(aes(group = País), color = "#AB0EF5") +
+facet_wrap(~País, ncol = 3, scales = "free")
 ```
 
 ```{r}
 ggplot(organdata, mapping = aes(x = reorder(País, Doadores, na.rm = TRUE), y = Doadores, fill = world)) +
 geom_boxplot() +
-labs(x = NULL, color = "Mundo") +
+labs(x = NULL, fill = "Mundo") +
 coord_flip()
 ```
 
@@ -289,6 +293,8 @@ by_country <- organdata %>% group_by(consent_law, País) %>%
   ungroup
 ```
 
+Com isso feito, podemos começar a plotar.
+
 ```{r}
 ggplot(by_country, mapping = aes(x = Doadores_mean, y = reorder(País, Doadores_mean), color = consent_law)) +
 geom_point(size = 3) +
@@ -297,17 +303,18 @@ labs(x = "Taxa de Captação de Doadores", y = "", color = "Consentimento")
 
 ```{r}
 ggplot(by_country, mapping = aes(x = Doadores_mean, y = reorder(País, Doadores_mean))) +
-geom_point(size = 3) +
+geom_point(size = 3, color = "#34EBBA") +
 facet_wrap(~consent_law, scales = "free_y", ncol = 2) +
 labs(x = "Doadores", y = "")
 ```
 
 ```{r}
 ggplot(by_country, mapping = aes(x = reorder(País, Doadores_mean), y = Doadores_mean)) +
-geom_pointrange(mapping = aes(ymin = Doadores_mean - Doadores_sd, ymax = Doadores_mean + Doadores_sd)) +
+geom_pointrange(mapping = aes(ymin = Doadores_mean - Doadores_sd, ymax = Doadores_mean + Doadores_sd), color = "#BDE038") +
 labs(x = "", y = "Doadores") +
 coord_flip() +
-theme(legend.position = "none")
+theme(legend.position = "none") +
+ggtitle("Doadores por país")
 ```
 
 Aqui, usaremos outro métodos para dar nomes no gráfico. Inicialmente, definimos variáveis com os textos que gostaríamos que aparecessem.
@@ -335,14 +342,16 @@ labs(x = x_label, y = y_label, title = p_title, subtitle = p_subtitle, caption =
 
 ```{r}
 ggplot(by_country, mapping = aes(x = gdp_mean, y = health_mean)) +
-geom_point(size =2) +
+geom_point(size =2, color = "#A3AB78") +
+geom_point(data = subset(by_country, gdp_mean > 25000), color = "#10454F") +
 geom_text_repel(data = subset(by_country, gdp_mean > 25000), mapping = aes(label = País)) +
 labs(x = "PIB médio", y = "Saúde média")
 ```
 
 ```{r}
 ggplot(by_country, mapping = aes(x = gdp_mean, y = health_mean)) +
-geom_point(size =2) +
+geom_point(size =2, color = "#A3AB78") +
+geom_point(data = subset(by_country, gdp_mean > 25000 | health_mean < 1500 | País %in% "Belgium"), color = "#10454F") +
 geom_text_repel(data = subset(by_country, gdp_mean > 25000 | health_mean < 1500 | País %in% "Belgium"), mapping = aes(label = País)) +
 labs(x = "PIB médio", y = "Saúde média")
 ```
@@ -353,13 +362,14 @@ organdata$ind <- organdata$ccode %in% c("Ita", "Spa") & organdata$Ano > 1998
 ggplot(organdata, mapping = aes(x = Estradas, y = Doadores, color = ind)) +
 geom_point(size =2) +
 geom_text_repel(data = subset(organdata, ind), mapping = aes(label = ccode)) +
-guides(label = FALSE, color = FALSE)
+guides(label = FALSE, color = FALSE) +
+scale_color_manual(values = c("#1BBF15", "#BF7E04"))
 ```
 
 ```{r}
 ggplot(organdata, mapping = aes(x = Estradas, y = Doadores)) +
 geom_point(size =2) +
-annotate(geom = "rect", xmin = 120, xmax = 160, ymin = 30, ymax = 35, fill = "red", alpha = 0.2) +
+annotate(geom = "rect", xmin = 120, xmax = 160, ymin = 30, ymax = 35, fill = "#F20746", alpha = 0.2) +
 annotate(geom = "text", x = 162, y = 32.5, label = "Um número surpreendente \n grande de recuperações", hjust = 0)
 ```
 
@@ -375,5 +385,6 @@ labs(color = "Mundo")
 ggplot(organdata, mapping = aes(x = Estradas, y = Doadores, color = world)) +
 geom_point(size =2) +
 labs(x = "Mortes na Estrada", y = "Doadores") +
-guides(color = FALSE)
+guides(color = FALSE) +
+scale_color_manual(values = c("#DFB9AA", "#EBE7CA","#B9806A","#575755"))
 ```
