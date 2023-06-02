@@ -3,6 +3,8 @@ title: "Lista 5 - Capítulos 4 e 5"
 author: "Gustavo Tironi"
 date: '2023-06-01'
 output: 
+  pdf_document:
+    toc: no
   html_document:
     overflow: hidden
     number_sections: yes
@@ -12,8 +14,6 @@ output:
     toc_float:
       collapsed: yes
       smmoth_scroll: no
-  pdf_document:
-    toc: no
 ---
 
 ```{r setup, include=FALSE}
